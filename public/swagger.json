@@ -4,9 +4,9 @@
     "title": "Udon User API",
     "description": "For information on how to use the API keys in headers check: [Here](https://github.com/openware/peatio/blob/master/docs/api/trading_api.md#how-to-use-api-key)",
     "contact": {
-      "name": "support@udontrade.com",
-      "url": "https://www.udontrade.com",
-      "email": "support@udontrade.com"
+      "name": "support@udondax.com",
+      "url": "https://www.udondax.com",
+      "email": "support@udondax.com"
     },
     "license": {
       "name": "MIT",
@@ -30,7 +30,7 @@
   ],
   "servers": [
     {
-      "url": "https://www.udontrade.com/api/v2/udonex"
+      "url": "https://www.udondax.com/api/v2/udonex"
     }
   ],
   "paths": {
