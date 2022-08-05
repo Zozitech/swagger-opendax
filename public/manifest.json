@@ -3,17 +3,17 @@
   "name": "Udon API",
   "icons": [
     {
-      "src": "udondax.svg",
+      "src": "nasadax.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "udondax.svg",
+      "src": "nasadax.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "udondax.svg",
+      "src": "nasadax.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }
