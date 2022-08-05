@@ -4,7 +4,6 @@ services:
   api-docs:
     build:
       context: .
-      dockerfile: Dockerfile-api
       args:
         buildno: 1
     restart: always
