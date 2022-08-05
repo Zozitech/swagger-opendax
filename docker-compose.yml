@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  api-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile-api
+      args:
+        buildno: 1
+    restart: always
+    ports:
+      - '8080:8080'
+  nginx:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro # config file
+      - ./nginx/src:/usr/share/nginx/html # simple index.html
+    restart: always
+    depends_on:
+      - api-docs

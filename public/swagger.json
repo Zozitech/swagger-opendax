@@ -30,7 +30,7 @@
   ],
   "servers": [
     {
-      "url": "https://www.nasadax.com/api/v2/nasadax"
+      "url": "https://www.nasadax.com/api/v2/trade"
     }
   ],
   "paths": {
