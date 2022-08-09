@@ -1,2 +1,0 @@
-(this["webpackJsonpudondax-api"]=this["webpackJsonpudondax-api"]||[]).push([[0],{402:function(n,t,e){"use strict";e.r(t);var o=e(1),c=e.n(o),a=e(96),i=e.n(a),s=e(401),r=(e(916),e(214));i.a.render(Object(r.jsx)(c.a.StrictMode,{children:Object(r.jsx)(s.a,{url:"/swagger.json"})}),document.getElementById("root"))},588:function(n,t){},590:function(n,t){},654:function(n,t){}},[[402,1,2]]]);
-//# sourceMappingURL=main.d79760f8.chunk.js.map
