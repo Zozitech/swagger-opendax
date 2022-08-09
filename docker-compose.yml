@@ -1,24 +1,36 @@
-version: '3'
+version: '3.3'
 
 services:
-  reverse-proxy:
-    image: traefik:v2.5
+  traefik:
+    image: 'traefik:v2.8'
+    container_name: 'traefik'
     command:
+      #- "--log.level=DEBUG"
       - '--api.insecure=true'
-      - '--providers.docker'
+      - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
       - '--entrypoints.web.address=:80'
-      - '--entrypoints.websecure.address=:443'
-
     ports:
       - '80:80'
-      - '443:443'
       - '8080:8080'
-    labels:
-      - 'traefik.http.routers.dashboard.rule=Host(api.nasadax.com) && (PathPrefix(/api) || PathPrefix(/dashboard))'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+
+  # whoami:
+  #   image: "traefik/whoami"
+  #   container_name: "simple-service"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.whoami.rule=Host(`api.nody.live`)"
+  #     - "traefik.http.routers.whoami.entrypoints=web"
 
   api-swagger:
     build: .
+    restart: always
     ports:
-      - '8000:8000'
+      - '3000:3000'
     labels:
-      - 'traefik.http.routers.api-swagger.rule=Host(api.nasadax.com) && PathPrefix(/api)'
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.font-end.rule=Host(`api.nody.live`)'
+      - 'traefik.http.routers.font-end.entrypoints=web'
+      - 'traefik.http.services.font-end.loadbalancer.server.port=3000'
