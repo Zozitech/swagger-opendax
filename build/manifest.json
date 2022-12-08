@@ -3,17 +3,17 @@
   "name": "Udon API",
   "icons": [
     {
-      "src": "octium.svg",
+      "src": "bitxonex.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "octium.svg",
+      "src": "bitxonex.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "octium.svg",
+      "src": "bitxonex.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }
