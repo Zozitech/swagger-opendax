@@ -25,11 +25,11 @@
   ],
   "servers": [
     {
-      "url": "https://www.bitxonex.com"
+      "url": "https://www.bitxonex.com/api/v2/trade"
     }
   ],
   "paths": {
-    "/api/v2/trade/public/withdraw_limits": {
+    "/public/withdraw_limits": {
       "get": {
         "description": "Returns withdraw limits table as paginated collection",
         "produces": [
@@ -108,7 +108,7 @@
         "operationId": "getApiV2tradePublicWithdrawLimits"
       }
     },
-    "/api/v2/trade/public/webhooks/{event}": {
+    "/public/webhooks/{event}": {
       "post": {
         "description": "Bitgo Webhook",
         "produces": [
@@ -190,7 +190,7 @@
         "operationId": "postApiV2tradePublicWebhooksEvent"
       }
     },
-    "/api/v2/trade/public/trading_fees": {
+    "/public/trading_fees": {
       "get": {
         "description": "Returns trading_fees table as paginated collection",
         "produces": [
@@ -341,7 +341,7 @@
         "operationId": "getApiV2tradePublicTradingFees"
       }
     },
-    "/api/v2/trade/public/health/ready": {
+    "/public/health/ready": {
       "get": {
         "description": "Get application readiness status",
         "produces": [
@@ -358,7 +358,7 @@
         "operationId": "getApiV2tradePublicHealthReady"
       }
     },
-    "/api/v2/trade/public/health/alive": {
+    "/public/health/alive": {
       "get": {
         "description": "Get application liveness status",
         "produces": [
@@ -375,7 +375,7 @@
         "operationId": "getApiV2tradePublicHealthAlive"
       }
     },
-    "/api/v2/trade/public/version": {
+    "/public/version": {
       "get": {
         "description": "Get running trade version and build details.",
         "produces": [
@@ -392,7 +392,7 @@
         "operationId": "getApiV2tradePublicVersion"
       }
     },
-    "/api/v2/trade/public/timestamp": {
+    "/public/timestamp": {
       "get": {
         "description": "Get server current time, in seconds since Unix epoch.",
         "produces": [
@@ -409,7 +409,7 @@
         "operationId": "getApiV2tradePublicTimestamp"
       }
     },
-    "/api/v2/trade/public/member-levels": {
+    "/public/member-levels": {
       "get": {
         "description": "Returns hash of minimum levels and the privileges they provide.",
         "produces": [
@@ -426,7 +426,7 @@
         "operationId": "getApiV2tradePublicMemberLevels"
       }
     },
-    "/api/v2/trade/public/markets/{market}/tickers": {
+    "/public/markets/{market}/tickers": {
       "get": {
         "description": "Get ticker of specific market.",
         "produces": [
@@ -463,7 +463,7 @@
         "operationId": "getApiV2tradePublicMarketsMarketTickers"
       }
     },
-    "/api/v2/trade/public/markets/tickers": {
+    "/public/markets/tickers": {
       "get": {
         "description": "Get ticker of all markets (For response doc see /:market/tickers/ response).",
         "produces": [
@@ -483,7 +483,7 @@
         "operationId": "getApiV2tradePublicMarketsTickers"
       }
     },
-    "/api/v2/trade/public/markets/{market}/k-line": {
+    "/public/markets/{market}/k-line": {
       "get": {
         "description": "Get OHLC(k line) of specific market.",
         "produces": [
@@ -567,7 +567,7 @@
         "operationId": "getApiV2tradePublicMarketsMarketKLine"
       }
     },
-    "/api/v2/trade/public/markets/{market}/depth": {
+    "/public/markets/{market}/depth": {
       "get": {
         "description": "Get depth or specified market. Both asks and bids are sorted from highest price to lowest.",
         "produces": [
@@ -612,7 +612,7 @@
         "operationId": "getApiV2tradePublicMarketsMarketDepth"
       }
     },
-    "/api/v2/trade/public/markets/{market}/trades": {
+    "/public/markets/{market}/trades": {
       "get": {
         "description": "Get recent trades on market, each trade is included only once. Trades are sorted in reverse creation order.",
         "produces": [
@@ -683,7 +683,7 @@
         "operationId": "getApiV2tradePublicMarketsMarketTrades"
       }
     },
-    "/api/v2/trade/public/markets/{market}/order-book": {
+    "/public/markets/{market}/order-book": {
       "get": {
         "description": "Get the order book of specified market.",
         "produces": [
@@ -745,7 +745,7 @@
         "operationId": "getApiV2tradePublicMarketsMarketOrderBook"
       }
     },
-    "/api/v2/trade/public/markets": {
+    "/public/markets": {
       "get": {
         "description": "Get all available markets.",
         "produces": [
@@ -863,7 +863,7 @@
         "operationId": "getApiV2tradePublicMarkets"
       }
     },
-    "/api/v2/trade/public/currencies": {
+    "/public/currencies": {
       "get": {
         "description": "Get list of currencies",
         "produces": [
@@ -940,7 +940,7 @@
         "operationId": "getApiV2tradePublicCurrencies"
       }
     },
-    "/api/v2/trade/public/currencies/{id}": {
+    "/public/currencies/{id}": {
       "get": {
         "description": "Get a currency",
         "produces": [
@@ -989,7 +989,7 @@
         "operationId": "getApiV2tradePublicCurrenciesId"
       }
     },
-    "/api/v2/trade/account/stats/pnl": {
+    "/account/stats/pnl": {
       "get": {
         "description": "Get assets pnl calculated into one currency",
         "produces": [
@@ -1035,7 +1035,7 @@
         "operationId": "getApiV2tradeAccountStatsPnl"
       }
     },
-    "/api/v2/trade/account/transactions": {
+    "/account/transactions": {
       "get": {
         "description": "Get your transactions history.",
         "produces": [
@@ -1150,7 +1150,7 @@
         "operationId": "getApiV2tradeAccountTransactions"
       }
     },
-    "/api/v2/trade/account/withdraws": {
+    "/account/withdraws": {
       "post": {
         "description": "Creates new withdrawal to active beneficiary.",
         "produces": [
@@ -1314,7 +1314,7 @@
         "operationId": "getApiV2tradeAccountWithdraws"
       }
     },
-    "/api/v2/trade/account/withdraws/sums": {
+    "/account/withdraws/sums": {
       "get": {
         "description": "Returns withdrawal sums for last 4 hours and 1 month",
         "produces": [
@@ -1331,7 +1331,7 @@
         "operationId": "getApiV2tradeAccountWithdrawsSums"
       }
     },
-    "/api/v2/trade/account/beneficiaries/{id}": {
+    "/account/beneficiaries/{id}": {
       "delete": {
         "description": "Delete beneficiary",
         "produces": [
@@ -1386,7 +1386,7 @@
         "operationId": "getApiV2tradeAccountBeneficiariesId"
       }
     },
-    "/api/v2/trade/account/beneficiaries/{id}/activate": {
+    "/account/beneficiaries/{id}/activate": {
       "patch": {
         "description": "Activates beneficiary with pin",
         "produces": [
@@ -1427,7 +1427,7 @@
         "operationId": "patchApiV2tradeAccountBeneficiariesIdActivate"
       }
     },
-    "/api/v2/trade/account/beneficiaries/{id}/resend_pin": {
+    "/account/beneficiaries/{id}/resend_pin": {
       "patch": {
         "description": "Resend beneficiary pin",
         "produces": [
@@ -1457,7 +1457,7 @@
         "operationId": "patchApiV2tradeAccountBeneficiariesIdResendPin"
       }
     },
-    "/api/v2/trade/account/beneficiaries": {
+    "/account/beneficiaries": {
       "post": {
         "description": "Create new beneficiary",
         "produces": [
@@ -1591,7 +1591,7 @@
         "operationId": "getApiV2tradeAccountBeneficiaries"
       }
     },
-    "/api/v2/trade/account/deposit_address/{currency}": {
+    "/account/deposit_address/{currency}": {
       "get": {
         "description": "Returns deposit address for account you want to deposit to by currency. The address may be blank because address generation process is still in progress. If this case you should try again later.",
         "produces": [
@@ -1649,7 +1649,7 @@
         "operationId": "getApiV2tradeAccountDepositAddressCurrency"
       }
     },
-    "/api/v2/trade/account/deposits/{txid}": {
+    "/account/deposits/{txid}": {
       "get": {
         "description": "Get details of specific deposit.",
         "produces": [
@@ -1678,7 +1678,7 @@
         "operationId": "getApiV2tradeAccountDepositsTxid"
       }
     },
-    "/api/v2/trade/account/deposits": {
+    "/account/deposits": {
       "get": {
         "description": "Get your deposits history.",
         "produces": [
@@ -1764,7 +1764,7 @@
         "operationId": "getApiV2tradeAccountDeposits"
       }
     },
-    "/api/v2/trade/account/balances/{currency}": {
+    "/account/balances/{currency}": {
       "get": {
         "description": "Get user account by currency",
         "produces": [
@@ -1804,7 +1804,7 @@
         "operationId": "getApiV2tradeAccountBalancesCurrency"
       }
     },
-    "/api/v2/trade/account/balances": {
+    "/account/balances": {
       "get": {
         "description": "Get list of user accounts",
         "produces": [
@@ -1877,7 +1877,7 @@
         "operationId": "getApiV2tradeAccountBalances"
       }
     },
-    "/api/v2/trade/market/trades": {
+    "/market/trades": {
       "get": {
         "description": "Get your executed trades. Trades are sorted in reverse creation order.",
         "produces": [
@@ -1957,7 +1957,7 @@
         "operationId": "getApiV2tradeMarketTrades"
       }
     },
-    "/api/v2/trade/market/orders/cancel": {
+    "/market/orders/cancel": {
       "post": {
         "description": "Cancel all my orders.",
         "produces": [
@@ -2008,7 +2008,7 @@
         "operationId": "postApiV2tradeMarketOrdersCancel"
       }
     },
-    "/api/v2/trade/market/orders/{id}/cancel": {
+    "/market/orders/{id}/cancel": {
       "post": {
         "description": "Cancel an order.",
         "produces": [
@@ -2037,7 +2037,7 @@
         "operationId": "postApiV2tradeMarketOrdersIdCancel"
       }
     },
-    "/api/v2/trade/market/orders": {
+    "/market/orders": {
       "post": {
         "description": "Create a Sell/Buy order.",
         "produces": [
@@ -2253,7 +2253,7 @@
         "operationId": "getApiV2tradeMarketOrders"
       }
     },
-    "/api/v2/trade/market/orders/{id}": {
+    "/market/orders/{id}": {
       "get": {
         "description": "Get information of specified order.",
         "produces": [
@@ -2282,7 +2282,7 @@
         "operationId": "getApiV2tradeMarketOrdersId"
       }
     },
-    "/api/v2/trade/coinmarketcap/orderbook/{market_pair}": {
+    "/coinmarketcap/orderbook/{market_pair}": {
       "get": {
         "description": "Get depth or specified market",
         "produces": [
@@ -2318,7 +2318,7 @@
         "operationId": "getApiV2tradeCoinmarketcapOrderbookMarketPair"
       }
     },
-    "/api/v2/trade/coinmarketcap/trades/{market_pair}": {
+    "/coinmarketcap/trades/{market_pair}": {
       "get": {
         "description": "Get recent trades on market",
         "produces": [
@@ -2347,7 +2347,7 @@
         "operationId": "getApiV2tradeCoinmarketcapTradesMarketPair"
       }
     },
-    "/api/v2/trade/coinmarketcap/ticker": {
+    "/coinmarketcap/ticker": {
       "get": {
         "description": "Get 24-hour pricing and volume summary for each market pair",
         "produces": [
@@ -2367,7 +2367,7 @@
         "operationId": "getApiV2tradeCoinmarketcapTicker"
       }
     },
-    "/api/v2/trade/coinmarketcap/assets": {
+    "/coinmarketcap/assets": {
       "get": {
         "description": "Details on crypto currencies available on the exchange",
         "produces": [
@@ -2384,7 +2384,7 @@
         "operationId": "getApiV2tradeCoinmarketcapAssets"
       }
     },
-    "/api/v2/trade/coinmarketcap/summary": {
+    "/coinmarketcap/summary": {
       "get": {
         "description": "Overview of market data for all tickers and all market pairs on the exchange",
         "produces": [
@@ -2401,7 +2401,7 @@
         "operationId": "getApiV2tradeCoinmarketcapSummary"
       }
     },
-    "/api/v2/trade/coingecko/historical_trades": {
+    "/coingecko/historical_trades": {
       "get": {
         "description": "Get recent trades on market",
         "produces": [
@@ -2464,7 +2464,7 @@
         "operationId": "getApiV2tradeCoingeckoHistoricalTrades"
       }
     },
-    "/api/v2/trade/coingecko/orderbook": {
+    "/coingecko/orderbook": {
       "get": {
         "description": "Get depth or specified market",
         "produces": [
@@ -2500,7 +2500,7 @@
         "operationId": "getApiV2tradeCoingeckoOrderbook"
       }
     },
-    "/api/v2/trade/coingecko/tickers": {
+    "/coingecko/tickers": {
       "get": {
         "description": "Get list of all available trading pairs",
         "produces": [
@@ -2520,7 +2520,7 @@
         "operationId": "getApiV2tradeCoingeckoTickers"
       }
     },
-    "/api/v2/trade/coingecko/pairs": {
+    "/coingecko/pairs": {
       "get": {
         "description": "Get list of all available trading pairs",
         "produces": [
