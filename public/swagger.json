@@ -3,9 +3,9 @@
   "info": {
     "title": "BitxOnex User API",
     "contact": {
-      "name": "help@bitxonex.com",
-      "url": "https://bitxonex.com",
-      "email": "help@bitxonex.com"
+      "name": "help@www.bitxonex.com",
+      "url": "https://www.bitxonex.com",
+      "email": "help@www.bitxonex.com"
     },
     "license": {
       "name": "MIT",
@@ -29,7 +29,7 @@
   ],
   "servers": [
     {
-      "url": "https://bitxonex.com/api/v2/trade"
+      "url": "https://www.bitxonex.com/api/v2/trade"
     }
   ],
   "paths": {
