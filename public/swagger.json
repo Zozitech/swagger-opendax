@@ -9,7 +9,7 @@
     },
     "version": "v2"
   },
-  "tags": [
+  /* "tags": [
     {
       "name": "public",
       "description": "Operations about publics"
@@ -22,7 +22,7 @@
       "name": "market",
       "description": "Operations about markets"
     }
-  ],
+  ], */
   "servers": [
     {
       "url": "https://www.bitxonex.com/api/v2/trade"
