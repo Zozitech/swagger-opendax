@@ -1,12 +1,12 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "bitxonex User API",
+    "title": "Nasadax User API",
     "description": "For information on how to use the API keys in headers check: [Here](https://github.com/openware/peatio/blob/master/docs/api/trading_api.md#how-to-use-api-key)",
     "contact": {
-      "name": "support@bitxonex.com",
-      "url": "https://www.bitxonex.com",
-      "email": "support@bitxonex.com"
+      "name": "support@nasadax.com",
+      "url": "https://www.nasadax.com",
+      "email": "support@nasadax.com"
     },
     "license": {
       "name": "MIT",
@@ -30,7 +30,7 @@
   ],
   "servers": [
     {
-      "url": "https://www.bitxonex.com/api/v2/trade"
+      "url": "https://www.nasadax.com/api/v2/trade"
     }
   ],
   "paths": {
