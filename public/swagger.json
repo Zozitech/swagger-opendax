@@ -1,17 +1,17 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "BitxOnex User API",
+    "title": "FinanceX User API",
     "contact": {
-      "name": "help@bitxonex.com",
-      "url": "https://www.bitxonex.com",
-      "email": "help@bitxonex.com"
+      "name": "help@financex.trade",
+      "url": "https://www.financex.trade",
+      "email": "help@financex.trade"
     },
     "version": "v2"
   },
   "servers": [
     {
-      "url": "https://www.bitxonex.com/api/v2/trade"
+      "url": "https://www.financex.trade/api/v2/trade"
     }
   ],
   "paths": {

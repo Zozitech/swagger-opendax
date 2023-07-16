@@ -1,19 +1,19 @@
 {
-  "short_name": "BitxOnex API",
-  "name": "BitxOnex API",
+  "short_name": "FinanceX API",
+  "name": "FinanceX API",
   "icons": [
     {
-      "src": "bitxonex.svg",
+      "src": "financex.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "bitxonex.svg",
+      "src": "financex.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "bitxonex.svg",
+      "src": "financex.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }
