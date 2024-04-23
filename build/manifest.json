@@ -1,19 +1,19 @@
 {
-  "short_name": "FinanceX API",
-  "name": "FinanceX API",
+  "short_name": "UtiTrade API",
+  "name": "UtiTrade API",
   "icons": [
     {
-      "src": "financex.svg",
+      "src": "UtiTrade.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "financex.svg",
+      "src": "UtiTrade.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "financex.svg",
+      "src": "UtiTrade.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }
