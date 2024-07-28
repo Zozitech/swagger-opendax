@@ -3,15 +3,15 @@
   "info": {
     "title": "FinanceX User API",
     "contact": {
-      "name": "support@financex.trade",
-      "url": "https://financex.trade",
-      "email": "support@financex.trade"
+      "name": "support@fcex.trade",
+      "url": "https://fcex.trade",
+      "email": "support@fcex.trade"
     },
     "version": "v2"
   },
   "servers": [
     {
-      "url": "https://financex.trade/api/v2/trade"
+      "url": "https://fcex.trade/api/v2/trade"
     }
   ],
   "paths": {
