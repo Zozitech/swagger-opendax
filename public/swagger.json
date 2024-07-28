@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "UtiTrade User API",
+    "title": "Fcex User API",
     "contact": {
       "name": "product@fcex.trade",
       "url": "https://fcex.trade",
