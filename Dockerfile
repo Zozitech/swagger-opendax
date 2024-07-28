@@ -6,7 +6,7 @@
 
 # EXPOSE 3000
 
-FROM node:18-alpine AS development
+FROM node:14-alpine AS development
 
 # Set working directory
 WORKDIR /app
