@@ -19,8 +19,8 @@ RUN yarn global add serve
 COPY . /app
 
 ENV CI=true
-ENV PORT=3000
+ENV PORT=3001
 
 CMD [ "serve", "-s" ,"build"]
 
-EXPOSE 3000
+EXPOSE 3001

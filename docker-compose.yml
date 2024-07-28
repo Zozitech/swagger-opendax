@@ -28,9 +28,9 @@ services:
     build: .
     restart: always
     ports:
-      - '3000:80'
+      - '3001:80'
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.font-end.rule=Host(`api.nody.live`)'
       - 'traefik.http.routers.font-end.entrypoints=web'
-      - 'traefik.http.services.font-end.loadbalancer.server.port=3000'
+      - 'traefik.http.services.font-end.loadbalancer.server.port=3001'
