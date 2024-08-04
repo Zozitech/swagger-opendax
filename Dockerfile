@@ -1,26 +1,30 @@
-# FROM swaggerapi/swagger-ui:v4.1.3
+FROM node:20.16.0-alpine AS builder
 
-# ENV SWAGGER_JSON=/foo
-
-# COPY public/swagger.json /foo
-
-# EXPOSE 3000
-
-FROM node:14-alpine AS development
+RUN npm i -g pnpm@8.15.0 serve
 
 # Set working directory
 WORKDIR /app
 
-# 
-COPY package.json /app/package.json
-COPY yarn.lock /app/yarn.lock
+COPY package.json .
+COPY pnpm-lock.yaml .
 
-RUN yarn global add serve
-COPY . /app
+RUN pnpm install
+
+COPY . .
+
+RUN pnpm build
+
+FROM node:20.16.0-alpine
 
 ENV CI=true
 ENV PORT=3000
 
-CMD [ "serve", "-s" ,"build"]
+WORKDIR /app
+
+RUN npm i -g serve
+
+COPY --from=builder /app/dist /app
+
+CMD [ "serve", "-s" ,"."]
 
 EXPOSE 3000
