@@ -3,15 +3,15 @@
   "info": {
     "title": "Mecacex User API",
     "contact": {
-      "name": "Support",
-      "email": "product@mecacex.trade",
-      "url": "https://mecacex.trade"
+      "name": "Supporter",
+      "email": "hello@mecacex.com",
+      "url": "https://mecacex.com"
     },
     "version": "v2"
   },
   "servers": [
     {
-      "url": "https://mecacex.trade/api/v2/trade"
+      "url": "https://mecacex.com/api/v2/trade"
     }
   ],
   "paths": {
