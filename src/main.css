@@ -9,3 +9,8 @@ body {
 h5 {
   color: #ffffff !important;
 }
+
+a[href="https://redocly.com/redoc/"]
+{
+  display: none !important;
+}
