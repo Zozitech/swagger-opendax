@@ -1,3 +1,11 @@
 body {
-  margin: 0;
+  margin: 0px;
+}
+.redoc-wrap {
+  background-color: #121212 !important;
+  color: #ffffff;
+}
+
+h5 {
+  color: #ffffff !important;
 }

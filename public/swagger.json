@@ -1,17 +1,17 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Mecacex User API",
-    "contact": {
-      "name": "Supporter",
-      "email": "hello@mecacex.com",
-      "url": "https://mecacex.com"
-    },
-    "version": "v2"
+    "title": "BIGOGET User API",
+    "version": "v2",
+    "description": "For information on how to use the API keys in headers check: [Here]()",
+    "x-logo": {
+      "url": "https://a.bitgoget.com/resources/logo/logo-text.webp",
+      "altText": "BIGOGET Logo"
+    }
   },
   "servers": [
     {
-      "url": "https://mecacex.com/api/v2/trade"
+      "url": "https://a.bitgoget.com/api/v2"
     }
   ],
   "tags": [
