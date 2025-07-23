@@ -1,12 +1,12 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "BIGOGET User API",
+    "title": "BITGoGet User API",
     "version": "v2",
     "description": "To authenticate using API key, you need to pass the following 3 headers:\n\n- X-Auth-Apikey: Access Key for API key [Create Here](https://a.bitgoget.com/account/api-keys)\n- X-Auth-Nonce: Timestamp in milliseconds (can be passed as a string)\n- X-Auth-Signature: HMAC-SHA256, calculated using concatenation of X-Auth-Nonce and Access Key. Get API KEY Here",
     "x-logo": {
       "url": "https://a.bitgoget.com/resources/logo/logo-text.webp",
-      "altText": "BIGOGET Logo"
+      "altText": "BITGoGet Logo"
     }
   },
   "servers": [
