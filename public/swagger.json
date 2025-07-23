@@ -3,7 +3,7 @@
   "info": {
     "title": "BIGOGET User API",
     "version": "v2",
-    "description": "For information on how to use the API keys in headers check: [Here]()",
+    "description": "To authenticate using API key, you need to pass the following 3 headers:\n\n- X-Auth-Apikey: Access Key for API key [Create Here](https://a.bitgoget.com/account/api-keys)\n- X-Auth-Nonce: Timestamp in milliseconds (can be passed as a string)\n- X-Auth-Signature: HMAC-SHA256, calculated using concatenation of X-Auth-Nonce and Access Key. Get API KEY Here",
     "x-logo": {
       "url": "https://a.bitgoget.com/resources/logo/logo-text.webp",
       "altText": "BIGOGET Logo"
@@ -121,8 +121,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicWithdrawLimits"
+        "operationId": "/public/withdraw_limits"
       }
     },
     "/public/webhooks/{event}": {
@@ -195,8 +194,7 @@
             "description": "Bitgo Webhook"
           }
         },
-
-        "operationId": "postApiV2tradePublicWebhooksEvent"
+        "operationId": "/public/webhooks/{event}"
       }
     },
     "/public/trading_fees": {
@@ -355,8 +353,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicTradingFees"
+        "operationId": "/public/trading_fees"
       }
     },
     "/public/health/ready": {
@@ -368,8 +365,7 @@
             "description": "Get application readiness status"
           }
         },
-
-        "operationId": "getApiV2tradePublicHealthReady"
+        "operationId": "/public/health/ready"
       }
     },
     "/public/health/alive": {
@@ -381,8 +377,7 @@
             "description": "Get application liveness status"
           }
         },
-
-        "operationId": "getApiV2tradePublicHealthAlive"
+        "operationId": "/public/health/alive"
       }
     },
     "/public/version": {
@@ -394,8 +389,7 @@
             "description": "Get running trade version and build details."
           }
         },
-
-        "operationId": "getApiV2tradePublicVersion"
+        "operationId": "/public/version"
       }
     },
     "/public/timestamp": {
@@ -407,8 +401,7 @@
             "description": "Get server current time, in seconds since Unix epoch."
           }
         },
-
-        "operationId": "getApiV2tradePublicTimestamp"
+        "operationId": "/public/timestamp"
       }
     },
     "/public/member-levels": {
@@ -420,8 +413,7 @@
             "description": "Returns hash of minimum levels and the privileges they provide."
           }
         },
-
-        "operationId": "getApiV2tradePublicMemberLevels"
+        "operationId": "/public/member-levels"
       }
     },
     "/public/markets/{market}/tickers": {
@@ -459,8 +451,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicMarketsMarketTickers"
+        "operationId": "/public/markets/{market}/tickers"
       }
     },
     "/public/markets/tickers": {
@@ -479,8 +470,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicMarketsTickers"
+        "operationId": "/public/markets/tickers"
       }
     },
     "/public/markets/{market}/k-line": {
@@ -556,8 +546,7 @@
             "description": "Get OHLC(k line) of specific market."
           }
         },
-
-        "operationId": "getApiV2tradePublicMarketsMarketKLine"
+        "operationId": "/public/markets/{market}/k-line"
       }
     },
     "/public/markets/{market}/depth": {
@@ -601,8 +590,7 @@
             "description": "Get depth or specified market. Both asks and bids are sorted from highest price to lowest."
           }
         },
-
-        "operationId": "getApiV2tradePublicMarketsMarketDepth"
+        "operationId": "/public/markets/{market}/depth"
       }
     },
     "/public/markets/{market}/trades": {
@@ -677,8 +665,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicMarketsMarketTrades"
+        "operationId": "/public/markets/{market}/trades"
       }
     },
     "/public/markets/{market}/order-book": {
@@ -745,8 +732,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicMarketsMarketOrderBook"
+        "operationId": "/public/markets/{market}/order-book"
       }
     },
     "/public/markets": {
@@ -879,8 +865,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicMarkets"
+        "operationId": "/public/markets"
       }
     },
     "/public/currencies": {
@@ -965,8 +950,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicCurrencies"
+        "operationId": "/public/currencies"
       }
     },
     "/public/currencies/{id}": {
@@ -1016,8 +1000,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradePublicCurrenciesId"
+        "operationId": "/public/currencies/{id}"
       }
     },
     "/account/stats/pnl": {
@@ -1060,8 +1043,7 @@
             "description": "Get assets pnl calculated into one currency"
           }
         },
-
-        "operationId": "getApiV2tradeAccountStatsPnl"
+        "operationId": "/account/stats/pnl"
       }
     },
     "/account/transactions": {
@@ -1186,8 +1168,7 @@
             "description": "Get your transactions history."
           }
         },
-
-        "operationId": "getApiV2tradeAccountTransactions"
+        "operationId": "/account/transactions"
       }
     },
     "/account/withdraws": {
@@ -1255,8 +1236,7 @@
             "description": "Creates new withdrawal to active beneficiary."
           }
         },
-
-        "operationId": "postApiV2tradeAccountWithdraws"
+        "operationId": "/account/withdraws"
       },
       "get": {
         "tags": ["Account"],
@@ -1349,8 +1329,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountWithdraws"
+        "operationId": "/account/withdraws"
       }
     },
     "/account/withdraws/sums": {
@@ -1362,8 +1341,7 @@
             "description": "Returns withdrawal sums for last 4 hours and 1 month"
           }
         },
-
-        "operationId": "getApiV2tradeAccountWithdrawsSums"
+        "operationId": "/account/withdraws/sums"
       }
     },
     "/account/beneficiaries/{id}": {
@@ -1387,8 +1365,7 @@
             "description": "Delete beneficiary"
           }
         },
-
-        "operationId": "deleteApiV2tradeAccountBeneficiariesId"
+        "operationId": "/account/beneficiaries/{id}"
       },
       "get": {
         "tags": ["Account"],
@@ -1417,8 +1394,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountBeneficiariesId"
+        "operationId": "/account/beneficiaries/{id}"
       }
     },
     "/account/beneficiaries/{id}/activate": {
@@ -1467,8 +1443,7 @@
             }
           }
         },
-
-        "operationId": "patchApiV2tradeAccountBeneficiariesIdActivate"
+        "operationId": "/account/beneficiaries/{id}/activate"
       }
     },
     "/account/beneficiaries/{id}/resend_pin": {
@@ -1492,8 +1467,7 @@
             "description": "Resend beneficiary pin"
           }
         },
-
-        "operationId": "patchApiV2tradeAccountBeneficiariesIdResendPin"
+        "operationId": "/account/beneficiaries/{id}/resend_pin"
       }
     },
     "/account/beneficiaries": {
@@ -1561,8 +1535,7 @@
             }
           }
         },
-
-        "operationId": "postApiV2tradeAccountBeneficiaries"
+        "operationId": "/account/beneficiaries"
       },
       "get": {
         "tags": ["Account"],
@@ -1623,8 +1596,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountBeneficiaries"
+        "operationId": "/account/beneficiaries"
       }
     },
     "/account/deposit_address/{currency}": {
@@ -1682,8 +1654,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountDepositAddressCurrency"
+        "operationId": "/account/deposit_address/{currency}"
       }
     },
     "/account/deposits/{txid}": {
@@ -1713,8 +1684,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountDepositsTxid"
+        "operationId": "/account/deposits/{txid}"
       }
     },
     "/account/deposits": {
@@ -1809,8 +1779,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountDeposits"
+        "operationId": "/account/deposits"
       }
     },
     "/account/balances/{currency}": {
@@ -1851,8 +1820,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountBalancesCurrency"
+        "operationId": "/account/balances/{currency}"
       }
     },
     "/account/balances": {
@@ -1936,8 +1904,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeAccountBalances"
+        "operationId": "/account/balances"
       }
     },
     "/market/trades": {
@@ -2025,8 +1992,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeMarketTrades"
+        "operationId": "/market/trades"
       }
     },
     "/market/orders/cancel": {
@@ -2072,8 +2038,7 @@
             }
           }
         },
-
-        "operationId": "postApiV2tradeMarketOrdersCancel"
+        "operationId": "/market/orders/cancel"
       }
     },
     "/market/orders/{id}/cancel": {
@@ -2096,8 +2061,7 @@
             "description": "Cancel an order."
           }
         },
-
-        "operationId": "postApiV2tradeMarketOrdersIdCancel"
+        "operationId": "/market/orders/{id}/cancel"
       }
     },
     "/market/orders": {
@@ -2157,8 +2121,7 @@
             }
           }
         },
-
-        "operationId": "postApiV2tradeMarketOrders"
+        "operationId": "/market/orders"
       },
       "get": {
         "tags": ["Market"],
@@ -2293,8 +2256,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeMarketOrders"
+        "operationId": "/market/orders"
       }
     },
     "/market/orders/{id}": {
@@ -2324,8 +2286,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeMarketOrdersId"
+        "operationId": "/market/orders/{id}"
       }
     },
     "/coinmarketcap/orderbook/{market_pair}": {
@@ -2360,8 +2321,7 @@
             "description": "Get depth or specified market"
           }
         },
-
-        "operationId": "getApiV2tradeCoinmarketcapOrderbookMarketPair"
+        "operationId": "/coinmarketcap/orderbook/{market_pair}"
       }
     },
     "/coinmarketcap/trades/{market_pair}": {
@@ -2391,8 +2351,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeCoinmarketcapTradesMarketPair"
+        "operationId": "/coinmarketcap/trades/{market_pair}"
       }
     },
     "/coinmarketcap/ticker": {
@@ -2411,8 +2370,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeCoinmarketcapTicker"
+        "operationId": "/coinmarketcap/ticker"
       }
     },
     "/coinmarketcap/assets": {
@@ -2424,8 +2382,7 @@
             "description": "Details on crypto currencies available on the exchange"
           }
         },
-
-        "operationId": "getApiV2tradeCoinmarketcapAssets"
+        "operationId": "/coinmarketcap/assets"
       }
     },
     "/coinmarketcap/summary": {
@@ -2437,8 +2394,7 @@
             "description": "Overview of market data for all tickers and all market pairs on the exchange"
           }
         },
-
-        "operationId": "getApiV2tradeCoinmarketcapSummary"
+        "operationId": "/coinmarketcap/summary"
       }
     },
     "/coingecko/historical_trades": {
@@ -2503,8 +2459,7 @@
             "description": "Get recent trades on market"
           }
         },
-
-        "operationId": "getApiV2tradeCoingeckoHistoricalTrades"
+        "operationId": "/coingecko/historical_trades"
       }
     },
     "/coingecko/orderbook": {
@@ -2539,8 +2494,7 @@
             "description": "Get depth or specified market"
           }
         },
-
-        "operationId": "getApiV2tradeCoingeckoOrderbook"
+        "operationId": "/coingecko/orderbook"
       }
     },
     "/coingecko/tickers": {
@@ -2559,8 +2513,7 @@
             }
           }
         },
-
-        "operationId": "getApiV2tradeCoingeckoTickers"
+        "operationId": "/coingecko/tickers"
       }
     },
     "/coingecko/pairs": {
@@ -2572,8 +2525,7 @@
             "description": "Get list of all available trading pairs"
           }
         },
-
-        "operationId": "getApiV2tradeCoingeckoPairs"
+        "operationId": "/coingecko/pairs"
       }
     }
   },

@@ -11,6 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       options={{
         scrollYOffset: 60,
         hideDownloadButton: true,
+
         theme: {
           colors: {
             primary: {
@@ -35,7 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           },
           typography: {
             fontSize: '14px', // Kích thước chữ
-            fontFamily: '"Roboto", sans-serif', // Phông chữ
+            fontFamily: '"IBM Plex Sans", sans-serif', // Phông chữ
             headings: {
               fontWeight: 'bold', // Đậm tiêu đề
             },
