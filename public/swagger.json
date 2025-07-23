@@ -1,12 +1,12 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "BIGOGET User API",
+    "title": "BITGoGet User API",
     "version": "v2",
     "description": "For information on how to use the API keys in headers check: [Here]()",
     "x-logo": {
       "url": "https://a.bitgoget.com/resources/logo/logo-text.webp",
-      "altText": "BIGOGET Logo"
+      "altText": "BITGoGet Logo"
     }
   },
   "servers": [
