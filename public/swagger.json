@@ -2289,7 +2289,7 @@
         "operationId": "/market/orders/{id}"
       }
     },
-    "/coinmarketcap/orderbook/{market_pair}": {
+    /* "/coinmarketcap/orderbook/{market_pair}": {
       "get": {
         "tags": ["CoinMarketCap"],
         "description": "Get depth or specified market",
@@ -2396,8 +2396,8 @@
         },
         "operationId": "/coinmarketcap/summary"
       }
-    },
-    "/coingecko/historical_trades": {
+    }, */
+    /* "/coingecko/historical_trades": {
       "get": {
         "tags": ["CoinGecko"],
         "description": "Get recent trades on market",
@@ -2528,7 +2528,7 @@
         "operationId": "/coingecko/pairs"
       }
     }
-  },
+  }, */
   "components": {
     "securitySchemes": {
       "Bearer": {
