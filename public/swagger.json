@@ -27,14 +27,14 @@
       "name": "Market",
       "description": "Operations about markets"
     },
-    {
+/*     {
       "name": "CoinMarketCap",
       "description": "Endpoints required by CoinMarketCap"
     },
     {
       "name": "CoinGecko",
       "description": "Endpoints required by CoinGecko"
-    }
+    } */
   ],
   "paths": {
     "/public/withdraw_limits": {
