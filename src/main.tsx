@@ -7,7 +7,7 @@ import './main.css';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RedocStandalone
-      specUrl='/swagger.json'
+      specUrl='/swagger.yaml'
       options={{
         scrollYOffset: 60,
         hideDownloadButton: true,
