@@ -146,142 +146,142 @@ paths:
         '201':
           description: Bitgo Webhook
       operationId: '/spot/public/webhooks/{event}'
-  '/spot/public/trading_fees':
-    get:
-      tags:
-        - Spot
-      description: Returns trading_fees table as paginated collection
-      parameters:
-        - in: query
-          name: group
-          description: Member group for define maker/taker fee.
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: market_id
-          description: Market id for define maker/taker fee.
-          required: false
-          schema:
-            type: string
-            enum:
-              - ttkkrw
-              - hsskrw
-              - btcusd
-              - wmskrw
-              - dashkrw
-              - usdkrw
-              - algobtc
-              - algousd
-              - algokrw
-              - xxxxusd
-              - xxxxbtc
-              - yunakrw
-              - teekrw
-              - teqkrw
-              - apibtc
-              - opsbtc
-              - terkrw
-              - btgbtc
-              - apikrw
-              - apiusd
-              - btgkrw
-              - opsusd
-              - dashbtc
-              - opskrw
-              - btgdash
-              - btckrw
-              - ethkrw
-              - ethbtc
-              - ethusd
-              - xrpkrw
-              - xrpbtc
-              - usdtkrw
-              - xrpusd
-              - usdtusd
-              - ringxkrw
-              - ringxusd
-              - bchkrw
-              - bchbtc
-              - bchusd
-              - eoskrw
-              - eosbtc
-              - eosusd
-              - niaxkrw
-              - linkkrw
-              - ltckrw
-              - ltcbtc
-              - ltcusd
-              - xlmkrw
-              - xlmbtc
-              - xlmusd
-              - mkrkrw
-              - daikrw
-              - lendkrw
-              - balkrw
-              - pntkrw
-              - volkrw
-              - tetkrw
-              - unikrw
-              - t0krw
-              - mtskrw
-              - t1krw
-              - t2krw
-              - t3krw
-              - t4krw
-              - t5krw
-              - t6krw
-              - t7krw
-              - t8krw
-              - t9krw
-              - any
-        - in: query
-          name: limit
-          description: Limit the number of returned paginations. Defaults to 100.
-          required: false
-          schema:
-            type: integer
-            format: int32
-            minimum: 1
-            maximum: 1000
-            default: 100
-        - in: query
-          name: page
-          description: Specify the page of paginated results.
-          required: false
-          schema:
-            type: integer
-            format: int32
-            default: 1
-        - in: query
-          name: ordering
-          description:
-            If set, returned values will be sorted in specific order, defaults
-            to 'asc'.
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-            default: asc
-        - in: query
-          name: order_by
-          description: Name of the field, which result will be ordered by.
-          required: false
-          schema:
-            type: string
-            default: id
-      responses:
-        '200':
-          description: Returns trading_fees table as paginated collection
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  '$ref': '#/components/schemas/TradingFee'
-      operationId: '/spot/public/trading_fees'
+  # '/spot/public/trading_fees':
+  #   get:
+  #     tags:
+  #       - Spot
+  #     description: Returns trading_fees table as paginated collection
+  #     parameters:
+  #       - in: query
+  #         name: group
+  #         description: Member group for define maker/taker fee.
+  #         required: false
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: market_id
+  #         description: Market id for define maker/taker fee.
+  #         required: false
+  #         schema:
+  #           type: string
+  #           enum:
+  #             - ttkkrw
+  #             - hsskrw
+  #             - btcusd
+  #             - wmskrw
+  #             - dashkrw
+  #             - usdkrw
+  #             - algobtc
+  #             - algousd
+  #             - algokrw
+  #             - xxxxusd
+  #             - xxxxbtc
+  #             - yunakrw
+  #             - teekrw
+  #             - teqkrw
+  #             - apibtc
+  #             - opsbtc
+  #             - terkrw
+  #             - btgbtc
+  #             - apikrw
+  #             - apiusd
+  #             - btgkrw
+  #             - opsusd
+  #             - dashbtc
+  #             - opskrw
+  #             - btgdash
+  #             - btckrw
+  #             - ethkrw
+  #             - ethbtc
+  #             - ethusd
+  #             - xrpkrw
+  #             - xrpbtc
+  #             - usdtkrw
+  #             - xrpusd
+  #             - usdtusd
+  #             - ringxkrw
+  #             - ringxusd
+  #             - bchkrw
+  #             - bchbtc
+  #             - bchusd
+  #             - eoskrw
+  #             - eosbtc
+  #             - eosusd
+  #             - niaxkrw
+  #             - linkkrw
+  #             - ltckrw
+  #             - ltcbtc
+  #             - ltcusd
+  #             - xlmkrw
+  #             - xlmbtc
+  #             - xlmusd
+  #             - mkrkrw
+  #             - daikrw
+  #             - lendkrw
+  #             - balkrw
+  #             - pntkrw
+  #             - volkrw
+  #             - tetkrw
+  #             - unikrw
+  #             - t0krw
+  #             - mtskrw
+  #             - t1krw
+  #             - t2krw
+  #             - t3krw
+  #             - t4krw
+  #             - t5krw
+  #             - t6krw
+  #             - t7krw
+  #             - t8krw
+  #             - t9krw
+  #             - any
+  #       - in: query
+  #         name: limit
+  #         description: Limit the number of returned paginations. Defaults to 100.
+  #         required: false
+  #         schema:
+  #           type: integer
+  #           format: int32
+  #           minimum: 1
+  #           maximum: 1000
+  #           default: 100
+  #       - in: query
+  #         name: page
+  #         description: Specify the page of paginated results.
+  #         required: false
+  #         schema:
+  #           type: integer
+  #           format: int32
+  #           default: 1
+  #       - in: query
+  #         name: ordering
+  #         description:
+  #           If set, returned values will be sorted in specific order, defaults
+  #           to 'asc'.
+  #         required: false
+  #         schema:
+  #           type: string
+  #           enum:
+  #             - asc
+  #             - desc
+  #           default: asc
+  #       - in: query
+  #         name: order_by
+  #         description: Name of the field, which result will be ordered by.
+  #         required: false
+  #         schema:
+  #           type: string
+  #           default: id
+  #     responses:
+  #       '200':
+  #         description: Returns trading_fees table as paginated collection
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 '$ref': '#/components/schemas/TradingFee'
+  #     operationId: '/spot/public/trading_fees'
   '/spot/public/health/ready':
     get:
       tags:
