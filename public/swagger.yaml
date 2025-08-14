@@ -15,7 +15,7 @@ info:
 servers:
   - url: https://bitgoget.com/api/v2
 tags:
-  - name: Public
+  - name: Spot
     description: Operations about publics
   - name: Account
     description: Operations about accounts
@@ -26,10 +26,10 @@ tags:
   # - name: CoinGecko
   #   description: Endpoints required by CoinGecko
 paths:
-  '/public/withdraw_limits':
+  '/spot/public/withdraw_limits':
     get:
       tags:
-        - Public
+        - Spot
       description: Returns withdraw limits table as paginated collection
       parameters:
         - in: query
@@ -90,11 +90,11 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/WithdrawLimit'
-      operationId: '/public/withdraw_limits'
-  '/public/webhooks/{event}':
+      operationId: '/spot/public/withdraw_limits'
+  '/spot/public/webhooks/{event}':
     post:
       tags:
-        - Public
+        - Spot
       description: Bitgo Webhook
       parameters:
         - in: path
@@ -145,11 +145,11 @@ paths:
       responses:
         '201':
           description: Bitgo Webhook
-      operationId: '/public/webhooks/{event}'
-  '/public/trading_fees':
+      operationId: '/spot/public/webhooks/{event}'
+  '/spot/public/trading_fees':
     get:
       tags:
-        - Public
+        - Spot
       description: Returns trading_fees table as paginated collection
       parameters:
         - in: query
@@ -281,56 +281,56 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/TradingFee'
-      operationId: '/public/trading_fees'
-  '/public/health/ready':
+      operationId: '/spot/public/trading_fees'
+  '/spot/public/health/ready':
     get:
       tags:
-        - Public
+        - Spot
       description: Get application readiness status
       responses:
         '200':
           description: Get application readiness status
-      operationId: '/public/health/ready'
-  '/public/health/alive':
+      operationId: '/spot/public/health/ready'
+  '/spot/public/health/alive':
     get:
       tags:
-        - Public
+        - Spot
       description: Get application liveness status
       responses:
         '200':
           description: Get application liveness status
-      operationId: '/public/health/alive'
-  '/public/version':
+      operationId: '/spot/public/health/alive'
+  '/spot/public/version':
     get:
       tags:
-        - Public
+        - Spot
       description: Get running trade version and build details.
       responses:
         '200':
           description: Get running trade version and build details.
-      operationId: '/public/version'
-  '/public/timestamp':
+      operationId: '/spot/public/version'
+  '/spot/public/timestamp':
     get:
       tags:
-        - Public
+        - Spot
       description: Get server current time, in seconds since Unix epoch.
       responses:
         '200':
           description: Get server current time, in seconds since Unix epoch.
-      operationId: '/public/timestamp'
-  '/public/member-levels':
+      operationId: '/spot/public/timestamp'
+  '/spot/public/member-levels':
     get:
       tags:
-        - Public
+        - Spot
       description: Returns hash of minimum levels and the privileges they provide.
       responses:
         '200':
           description: Returns hash of minimum levels and the privileges they provide.
-      operationId: '/public/member-levels'
-  '/public/markets/{market}/tickers':
+      operationId: '/spot/public/member-levels'
+  '/spot/public/markets/{market}/tickers':
     get:
       tags:
-        - Public
+        - Spot
       description: Get ticker of specific market.
       parameters:
         - in: path
@@ -353,11 +353,11 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Ticker'
-      operationId: '/public/markets/{market}/tickers'
-  '/public/markets/tickers':
+      operationId: '/spot/public/markets/{market}/tickers'
+  '/spot/public/markets/tickers':
     get:
       tags:
-        - Public
+        - Spot
       description:
         Get ticker of all markets (For response doc see /:market/tickers/
         response).
@@ -370,11 +370,11 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Ticker'
-      operationId: '/public/markets/tickers'
-  '/public/markets/{market}/k-line':
+      operationId: '/spot/public/markets/tickers'
+  '/spot/public/markets/{market}/k-line':
     get:
       tags:
-        - Public
+        - Spot
       description: Get OHLC(k line) of specific market.
       parameters:
         - in: path
@@ -446,11 +446,11 @@ paths:
       responses:
         '200':
           description: Get OHLC(k line) of specific market.
-      operationId: '/public/markets/{market}/k-line'
-  '/public/markets/{market}/depth':
+      operationId: '/spot/public/markets/{market}/k-line'
+  '/spot/public/markets/{market}/depth':
     get:
       tags:
-        - Public
+        - Spot
       description:
         Get depth or specified market. Both asks and bids are sorted from
         highest price to lowest.
@@ -483,11 +483,11 @@ paths:
           description:
             Get depth or specified market. Both asks and bids are sorted
             from highest price to lowest.
-      operationId: '/public/markets/{market}/depth'
-  '/public/markets/{market}/trades':
+      operationId: '/spot/public/markets/{market}/depth'
+  '/spot/public/markets/{market}/trades':
     get:
       tags:
-        - Public
+        - Spot
       description:
         Get recent trades on market, each trade is included only once.
         Trades are sorted in reverse creation order.
@@ -547,11 +547,11 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Trade'
-      operationId: '/public/markets/{market}/trades'
-  '/public/markets/{market}/order-book':
+      operationId: '/spot/public/markets/{market}/trades'
+  '/spot/public/markets/{market}/order-book':
     get:
       tags:
-        - Public
+        - Spot
       description: Get the order book of specified market.
       parameters:
         - in: path
@@ -596,11 +596,11 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/OrderBook'
-      operationId: '/public/markets/{market}/order-book'
-  '/public/markets':
+      operationId: '/spot/public/markets/{market}/order-book'
+  '/spot/public/markets':
     get:
       tags:
-        - Public
+        - Spot
       description: Get all available markets.
       parameters:
         - in: query
@@ -694,11 +694,11 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Market'
-      operationId: '/public/markets'
-  '/public/currencies':
+      operationId: '/spot/public/markets'
+  '/spot/public/currencies':
     get:
       tags:
-        - Public
+        - Spot
       description: Get list of currencies
       parameters:
         - in: query
@@ -755,11 +755,11 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Currency'
-      operationId: '/public/currencies'
-  '/public/currencies/{id}':
+      operationId: '/spot/public/currencies'
+  '/spot/public/currencies/{id}':
     get:
       tags:
-        - Public
+        - Spot
       description: Get a currency
       parameters:
         - in: path
@@ -794,7 +794,7 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Currency'
-      operationId: '/public/currencies/{id}'
+      operationId: '/spot/public/currencies/{id}'
   '/account/stats/pnl':
     get:
       tags:
