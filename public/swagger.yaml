@@ -6,7 +6,7 @@ info:
   description: |-
     To authenticate using API key, you need to pass the following 3 headers:
 
-    - X-Auth-Apikey: Access Key for API key [Create Here](https://bitgoget.com/account/api-keys)
+    - X-Auth-Apikey: Access Key for API key [Create Here](https://bitgoget.com/spot/account/api-keys)
     - X-Auth-Nonce: Timestamp in milliseconds (can be passed as a string)
     - X-Auth-Signature: HMAC-SHA256, calculated using concatenation of X-Auth-Nonce and Access Key.
   x-logo:
@@ -15,7 +15,7 @@ info:
 servers:
   - url: https://bitgoget.com/api/v2
 tags:
-  - name: Spot
+  - name: Public
     description: Operations about publics
   - name: Account
     description: Operations about accounts
@@ -29,7 +29,7 @@ paths:
   '/spot/public/withdraw_limits':
     get:
       tags:
-        - Spot
+        - Public
       description: Returns withdraw limits table as paginated collection
       parameters:
         - in: query
@@ -94,7 +94,7 @@ paths:
   '/spot/public/webhooks/{event}':
     post:
       tags:
-        - Spot
+        - Public
       description: Bitgo Webhook
       parameters:
         - in: path
@@ -285,7 +285,7 @@ paths:
   '/spot/public/health/ready':
     get:
       tags:
-        - Spot
+        - Public
       description: Get application readiness status
       responses:
         '200':
@@ -294,7 +294,7 @@ paths:
   '/spot/public/health/alive':
     get:
       tags:
-        - Spot
+        - Public
       description: Get application liveness status
       responses:
         '200':
@@ -303,7 +303,7 @@ paths:
   '/spot/public/version':
     get:
       tags:
-        - Spot
+        - Public
       description: Get running trade version and build details.
       responses:
         '200':
@@ -312,7 +312,7 @@ paths:
   '/spot/public/timestamp':
     get:
       tags:
-        - Spot
+        - Public
       description: Get server current time, in seconds since Unix epoch.
       responses:
         '200':
@@ -321,7 +321,7 @@ paths:
   '/spot/public/member-levels':
     get:
       tags:
-        - Spot
+        - Public
       description: Returns hash of minimum levels and the privileges they provide.
       responses:
         '200':
@@ -330,7 +330,7 @@ paths:
   '/spot/public/markets/{market}/tickers':
     get:
       tags:
-        - Spot
+        - Public
       description: Get ticker of specific market.
       parameters:
         - in: path
@@ -357,7 +357,7 @@ paths:
   '/spot/public/markets/tickers':
     get:
       tags:
-        - Spot
+        - Public
       description:
         Get ticker of all markets (For response doc see /:market/tickers/
         response).
@@ -374,7 +374,7 @@ paths:
   '/spot/public/markets/{market}/k-line':
     get:
       tags:
-        - Spot
+        - Public
       description: Get OHLC(k line) of specific market.
       parameters:
         - in: path
@@ -450,7 +450,7 @@ paths:
   '/spot/public/markets/{market}/depth':
     get:
       tags:
-        - Spot
+        - Public
       description:
         Get depth or specified market. Both asks and bids are sorted from
         highest price to lowest.
@@ -487,7 +487,7 @@ paths:
   '/spot/public/markets/{market}/trades':
     get:
       tags:
-        - Spot
+        - Public
       description:
         Get recent trades on market, each trade is included only once.
         Trades are sorted in reverse creation order.
@@ -551,7 +551,7 @@ paths:
   '/spot/public/markets/{market}/order-book':
     get:
       tags:
-        - Spot
+        - Public
       description: Get the order book of specified market.
       parameters:
         - in: path
@@ -600,7 +600,7 @@ paths:
   '/spot/public/markets':
     get:
       tags:
-        - Spot
+        - Public
       description: Get all available markets.
       parameters:
         - in: query
@@ -698,7 +698,7 @@ paths:
   '/spot/public/currencies':
     get:
       tags:
-        - Spot
+        - Public
       description: Get list of currencies
       parameters:
         - in: query
@@ -759,7 +759,7 @@ paths:
   '/spot/public/currencies/{id}':
     get:
       tags:
-        - Spot
+        - Public
       description: Get a currency
       parameters:
         - in: path
@@ -795,7 +795,7 @@ paths:
               schema:
                 '$ref': '#/components/schemas/Currency'
       operationId: '/spot/public/currencies/{id}'
-  '/account/stats/pnl':
+  '/spot/account/stats/pnl':
     get:
       tags:
         - Account
@@ -829,8 +829,8 @@ paths:
       responses:
         '200':
           description: Get assets pnl calculated into one currency
-      operationId: '/account/stats/pnl'
-  '/account/transactions':
+      operationId: '/spot/account/stats/pnl'
+  '/spot/account/transactions':
     get:
       tags:
         - Account
@@ -924,8 +924,8 @@ paths:
       responses:
         '200':
           description: Get your transactions history.
-      operationId: '/account/transactions'
-  '/account/withdraws':
+      operationId: '/spot/account/transactions'
+  '/spot/account/withdraws':
     post:
       tags:
         - Account
@@ -984,7 +984,7 @@ paths:
       responses:
         '201':
           description: Creates new withdrawal to active beneficiary.
-      operationId: '/account/withdraws'
+      operationId: '/spot/account/withdraws'
     get:
       tags:
         - Account
@@ -1054,8 +1054,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Withdraw'
-      operationId: '/account/withdraws'
-  '/account/withdraws/sums':
+      operationId: '/spot/account/withdraws'
+  '/spot/account/withdraws/sums':
     get:
       tags:
         - Account
@@ -1063,8 +1063,8 @@ paths:
       responses:
         '200':
           description: Returns withdrawal sums for last 4 hours and 1 month
-      operationId: '/account/withdraws/sums'
-  '/account/beneficiaries/{id}':
+      operationId: '/spot/account/withdraws/sums'
+  '/spot/account/beneficiaries/{id}':
     delete:
       tags:
         - Account
@@ -1080,7 +1080,7 @@ paths:
       responses:
         '204':
           description: Delete beneficiary
-      operationId: '/account/beneficiaries/{id}'
+      operationId: '/spot/account/beneficiaries/{id}'
     get:
       tags:
         - Account
@@ -1100,8 +1100,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Beneficiary'
-      operationId: '/account/beneficiaries/{id}'
-  '/account/beneficiaries/{id}/activate':
+      operationId: '/spot/account/beneficiaries/{id}'
+  '/spot/account/beneficiaries/{id}/activate':
     patch:
       tags:
         - Account
@@ -1134,8 +1134,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Beneficiary'
-      operationId: '/account/beneficiaries/{id}/activate'
-  '/account/beneficiaries/{id}/resend_pin':
+      operationId: '/spot/account/beneficiaries/{id}/activate'
+  '/spot/account/beneficiaries/{id}/resend_pin':
     patch:
       tags:
         - Account
@@ -1151,8 +1151,8 @@ paths:
       responses:
         '200':
           description: Resend beneficiary pin
-      operationId: '/account/beneficiaries/{id}/resend_pin'
-  '/account/beneficiaries':
+      operationId: '/spot/account/beneficiaries/{id}/resend_pin'
+  '/spot/account/beneficiaries':
     post:
       tags:
         - Account
@@ -1206,7 +1206,7 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Beneficiary'
-      operationId: '/account/beneficiaries'
+      operationId: '/spot/account/beneficiaries'
     get:
       tags:
         - Account
@@ -1257,8 +1257,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Beneficiary'
-      operationId: '/account/beneficiaries'
-  '/account/deposit_address/{currency}':
+      operationId: '/spot/account/beneficiaries'
+  '/spot/account/deposit_address/{currency}':
     get:
       tags:
         - Account
@@ -1309,8 +1309,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Deposit'
-      operationId: '/account/deposit_address/{currency}'
-  '/account/deposits/{txid}':
+      operationId: '/spot/account/deposit_address/{currency}'
+  '/spot/account/deposits/{txid}':
     get:
       tags:
         - Account
@@ -1329,8 +1329,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Deposit'
-      operationId: '/account/deposits/{txid}'
-  '/account/deposits':
+      operationId: '/spot/account/deposits/{txid}'
+  '/spot/account/deposits':
     get:
       tags:
         - Account
@@ -1400,8 +1400,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Deposit'
-      operationId: '/account/deposits'
-  '/account/balances/{currency}':
+      operationId: '/spot/account/deposits'
+  '/spot/account/balances/{currency}':
     get:
       tags:
         - Account
@@ -1430,8 +1430,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Account'
-      operationId: '/account/balances/{currency}'
-  '/account/balances':
+      operationId: '/spot/account/balances/{currency}'
+  '/spot/account/balances':
     get:
       tags:
         - Account
@@ -1488,8 +1488,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Account'
-      operationId: '/account/balances'
-  '/market/trades':
+      operationId: '/spot/account/balances'
+  '/spot/market/trades':
     get:
       tags:
         - Market
@@ -1562,8 +1562,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Trade'
-      operationId: '/market/trades'
-  '/market/orders/cancel':
+      operationId: '/spot/market/trades'
+  '/spot/market/orders/cancel':
     post:
       tags:
         - Market
@@ -1598,8 +1598,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Order'
-      operationId: '/market/orders/cancel'
-  '/market/orders/{id}/cancel':
+      operationId: '/spot/market/orders/cancel'
+  '/spot/market/orders/{id}/cancel':
     post:
       tags:
         - Market
@@ -1614,8 +1614,8 @@ paths:
       responses:
         '201':
           description: Cancel an order.
-      operationId: '/market/orders/{id}/cancel'
-  '/market/orders':
+      operationId: '/spot/market/orders/{id}/cancel'
+  '/spot/market/orders':
     post:
       tags:
         - Market
@@ -1665,7 +1665,7 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Order'
-      operationId: '/market/orders'
+      operationId: '/spot/market/orders'
     get:
       tags:
         - Market
@@ -1784,8 +1784,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Order'
-      operationId: '/market/orders'
-  '/market/orders/{id}':
+      operationId: '/spot/market/orders'
+  '/spot/market/orders/{id}':
     get:
       tags:
         - Market
@@ -1804,7 +1804,7 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Order'
-      operationId: '/market/orders/{id}'
+      operationId: '/spot/market/orders/{id}'
   # '/coinmarketcap/orderbook/{market_pair}':
   #   get:
   #     tags:
