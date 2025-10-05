@@ -1885,7 +1885,7 @@ paths:
   #           Overview of market data for all tickers and all market pairs
   #           on the exchange
   #     operationId: '/coinmarketcap/summary'
-  '/coingecko/historical_trades':
+  '/spot/coingecko/historical_trades':
     get:
       tags:
         - CoinGecko
@@ -1934,8 +1934,8 @@ paths:
       responses:
         '200':
           description: Get recent trades on market
-      operationId: '/coingecko/historical_trades'
-  '/coingecko/orderbook':
+      operationId: '/spot/coingecko/historical_trades'
+  '/spot/coingecko/orderbook':
     get:
       tags:
         - CoinGecko
@@ -1959,8 +1959,8 @@ paths:
       responses:
         '200':
           description: Get depth or specified market
-      operationId: '/coingecko/orderbook'
-  '/coingecko/tickers':
+      operationId: '/spot/coingecko/orderbook'
+  '/spot/coingecko/tickers':
     get:
       tags:
         - CoinGecko
@@ -1972,8 +1972,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Ticker'
-      operationId: '/coingecko/tickers'
-  '/coingecko/pairs':
+      operationId: '/spot/coingecko/tickers'
+  '/spot/coingecko/pairs':
     get:
       tags:
         - CoinGecko
@@ -1981,7 +1981,7 @@ paths:
       responses:
         '200':
           description: Get list of all available trading pairs
-      operationId: '/coingecko/pairs'
+      operationId: '/spot/coingecko/pairs'
 components:
   securitySchemes:
     Bearer:
