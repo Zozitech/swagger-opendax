@@ -1863,125 +1863,125 @@ paths:
   #             schema:
   #               '$ref': '#/components/schemas/Ticker'
   #     operationId: '/coinmarketcap/ticker'
-  # '/coinmarketcap/assets':
-  #   get:
-  #     tags:
-  #       - CoinMarketCap
-  #     description: Details on crypto currencies available on the exchange
-  #     responses:
-  #       '200':
-  #         description: Details on crypto currencies available on the exchange
-  #     operationId: '/coinmarketcap/assets'
-  # '/coinmarketcap/summary':
-  #   get:
-  #     tags:
-  #       - CoinMarketCap
-  #     description:
-  #       Overview of market data for all tickers and all market pairs on
-  #       the exchange
-  #     responses:
-  #       '200':
-  #         description:
-  #           Overview of market data for all tickers and all market pairs
-  #           on the exchange
-  #     operationId: '/coinmarketcap/summary'
-  # '/coingecko/historical_trades':
-  #   get:
-  #     tags:
-  #       - CoinGecko
-  #     description: Get recent trades on market
-  #     parameters:
-  #       - in: query
-  #         name: ticker_id
-  #         description: A pair such as "LTC_BTC"
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - in: query
-  #         name: type
-  #         description: To indicate nature of trade - buy/sell
-  #         required: false
-  #         schema:
-  #           type: string
-  #           enum:
-  #             - buy
-  #             - sell
-  #       - in: query
-  #         name: limit
-  #         description:
-  #           Number of historical trades to retrieve from time of query. [0,
-  #           200, 500...]. 0 returns full history
-  #         required: false
-  #         schema:
-  #           type: integer
-  #           format: int32
-  #           minimum: 0
-  #           maximum: 1000
-  #       - in: query
-  #         name: start_time
-  #         description: ''
-  #         required: false
-  #         schema:
-  #           type: integer
-  #           format: int32
-  #       - in: query
-  #         name: end_time
-  #         description: ''
-  #         required: false
-  #         schema:
-  #           type: integer
-  #           format: int32
-  #     responses:
-  #       '200':
-  #         description: Get recent trades on market
-  #     operationId: '/coingecko/historical_trades'
-  # '/coingecko/orderbook':
-  #   get:
-  #     tags:
-  #       - CoinGecko
-  #     description: Get depth or specified market
-  #     parameters:
-  #       - in: query
-  #         name: ticker_id
-  #         description: A pair such as "LTC_BTC"
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - in: query
-  #         name: depth
-  #         description: 'Orders depth quantity: [0, 100, 200, 500...]'
-  #         required: false
-  #         schema:
-  #           type: integer
-  #           format: int32
-  #           minimum: 0
-  #           maximum: 1000
-  #     responses:
-  #       '200':
-  #         description: Get depth or specified market
-  #     operationId: '/coingecko/orderbook'
-  # '/coingecko/tickers':
-  #   get:
-  #     tags:
-  #       - CoinGecko
-  #     description: Get list of all available trading pairs
-  #     responses:
-  #       '200':
-  #         description: Get list of all available trading pairs
-  #         content:
-  #           application/json:
-  #             schema:
-  #               '$ref': '#/components/schemas/Ticker'
-  #     operationId: '/coingecko/tickers'
-  # '/coingecko/pairs':
-  # get:
-  #   tags:
-  #     - CoinGecko
-  #   description: Get list of all available trading pairs
-  #   responses:
-  #     '200':
-  #       description: Get list of all available trading pairs
-  #   operationId: '/coingecko/pairs'
+  '/coinmarketcap/assets':
+    get:
+      tags:
+        - CoinMarketCap
+      description: Details on crypto currencies available on the exchange
+      responses:
+        '200':
+          description: Details on crypto currencies available on the exchange
+      operationId: '/coinmarketcap/assets'
+  '/coinmarketcap/summary':
+    get:
+      tags:
+        - CoinMarketCap
+      description:
+        Overview of market data for all tickers and all market pairs on
+        the exchange
+      responses:
+        '200':
+          description:
+            Overview of market data for all tickers and all market pairs
+            on the exchange
+      operationId: '/coinmarketcap/summary'
+  '/coingecko/historical_trades':
+    get:
+      tags:
+        - CoinGecko
+      description: Get recent trades on market
+      parameters:
+        - in: query
+          name: ticker_id
+          description: A pair such as "LTC_BTC"
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: type
+          description: To indicate nature of trade - buy/sell
+          required: false
+          schema:
+            type: string
+            enum:
+              - buy
+              - sell
+        - in: query
+          name: limit
+          description:
+            Number of historical trades to retrieve from time of query. [0,
+            200, 500...]. 0 returns full history
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 1000
+        - in: query
+          name: start_time
+          description: ''
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: end_time
+          description: ''
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Get recent trades on market
+      operationId: '/coingecko/historical_trades'
+  '/coingecko/orderbook':
+    get:
+      tags:
+        - CoinGecko
+      description: Get depth or specified market
+      parameters:
+        - in: query
+          name: ticker_id
+          description: A pair such as "LTC_BTC"
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: depth
+          description: 'Orders depth quantity: [0, 100, 200, 500...]'
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 1000
+      responses:
+        '200':
+          description: Get depth or specified market
+      operationId: '/coingecko/orderbook'
+  '/coingecko/tickers':
+    get:
+      tags:
+        - CoinGecko
+      description: Get list of all available trading pairs
+      responses:
+        '200':
+          description: Get list of all available trading pairs
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Ticker'
+      operationId: '/coingecko/tickers'
+  '/coingecko/pairs':
+  get:
+    tags:
+      - CoinGecko
+    description: Get list of all available trading pairs
+    responses:
+      '200':
+        description: Get list of all available trading pairs
+    operationId: '/coingecko/pairs'
 components:
   securitySchemes:
     Bearer:
