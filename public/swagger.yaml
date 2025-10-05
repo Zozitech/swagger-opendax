@@ -23,8 +23,8 @@ tags:
     description: Operations about markets
   # - name: CoinMarketCap
   #   description: Endpoints required by CoinMarketCap
-  # - name: CoinGecko
-  #   description: Endpoints required by CoinGecko
+  - name: CoinGecko
+    description: Endpoints required by CoinGecko
 paths:
   '/spot/public/withdraw_limits':
     get:
@@ -1863,28 +1863,28 @@ paths:
   #             schema:
   #               '$ref': '#/components/schemas/Ticker'
   #     operationId: '/coinmarketcap/ticker'
-  '/coinmarketcap/assets':
-    get:
-      tags:
-        - CoinMarketCap
-      description: Details on crypto currencies available on the exchange
-      responses:
-        '200':
-          description: Details on crypto currencies available on the exchange
-      operationId: '/coinmarketcap/assets'
-  '/coinmarketcap/summary':
-    get:
-      tags:
-        - CoinMarketCap
-      description:
-        Overview of market data for all tickers and all market pairs on
-        the exchange
-      responses:
-        '200':
-          description:
-            Overview of market data for all tickers and all market pairs
-            on the exchange
-      operationId: '/coinmarketcap/summary'
+  # '/coinmarketcap/assets':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description: Details on crypto currencies available on the exchange
+  #     responses:
+  #       '200':
+  #         description: Details on crypto currencies available on the exchange
+  #     operationId: '/coinmarketcap/assets'
+  # '/coinmarketcap/summary':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description:
+  #       Overview of market data for all tickers and all market pairs on
+  #       the exchange
+  #     responses:
+  #       '200':
+  #         description:
+  #           Overview of market data for all tickers and all market pairs
+  #           on the exchange
+  #     operationId: '/coinmarketcap/summary'
   '/coingecko/historical_trades':
     get:
       tags:
@@ -1974,14 +1974,14 @@ paths:
                 '$ref': '#/components/schemas/Ticker'
       operationId: '/coingecko/tickers'
   '/coingecko/pairs':
-  get:
-    tags:
-      - CoinGecko
-    description: Get list of all available trading pairs
-    responses:
-      '200':
-        description: Get list of all available trading pairs
-    operationId: '/coingecko/pairs'
+    get:
+      tags:
+        - CoinGecko
+      description: Get list of all available trading pairs
+      responses:
+        '200':
+          description: Get list of all available trading pairs
+      operationId: '/coingecko/pairs'
 components:
   securitySchemes:
     Bearer:
