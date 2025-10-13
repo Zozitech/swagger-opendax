@@ -1,0 +1,2591 @@
+---
+openapi: 3.0.0
+info:
+  title: BITGoGet User API
+  version: v2
+  description: |-
+    To authenticate using API key, you need to pass the following 3 headers:
+
+    - X-Auth-Apikey: Access Key for API key [Create Here](https://bitgoget.com/spot/account/api-keys)
+    - X-Auth-Nonce: Timestamp in milliseconds (can be passed as a string)
+    - X-Auth-Signature: HMAC-SHA256, calculated using concatenation of X-Auth-Nonce and Access Key.
+  x-logo:
+    url: /logo-text.webp
+    altText: BITGoGet Logo
+servers:
+  - url: https://bitgoget.com/api/v2
+tags:
+  - name: Public
+    description: Operations about publics
+  - name: Account
+    description: Operations about accounts
+  - name: Market
+    description: Operations about markets
+  # - name: CoinMarketCap
+  #   description: Endpoints required by CoinMarketCap
+  - name: CoinGecko
+    description: Endpoints required by CoinGecko
+paths:
+  '/spot/public/withdraw_limits':
+    get:
+      tags:
+        - Public
+      description: Returns withdraw limits table as paginated collection
+      parameters:
+        - in: query
+          name: group
+          description: Member group for define withdraw limits.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: kyc_level
+          description: KYC level for define withdraw limits.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          description: Limit the number of returned paginations. Defaults to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: ordering
+          description:
+            If set, returned values will be sorted in specific order, defaults
+            to 'asc'.
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: asc
+        - in: query
+          name: order_by
+          description: Name of the field, which result will be ordered by.
+          required: false
+          schema:
+            type: string
+            default: id
+      responses:
+        '200':
+          description: Returns withdraw limits table as paginated collection
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/WithdrawLimit'
+      operationId: '/spot/public/withdraw_limits'
+  '/spot/public/webhooks/{event}':
+    post:
+      tags:
+        - Public
+      description: Bitgo Webhook
+      parameters:
+        - in: path
+          name: event
+          description: Name of event can be deposit or withdraw
+          required: true
+          schema:
+            type: string
+            enum:
+              - deposit
+              - withdraw
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                type:
+                  description: Type of event.
+                  type: string
+                hash:
+                  description: Address txid.
+                  type: string
+                transfer:
+                  description: Transfer id.
+                  type: string
+                coin:
+                  description: Currency code.
+                  type: string
+                wallet:
+                  description: Wallet id.
+                  type: string
+                address:
+                  description: User Address.
+                  type: string
+                walletId:
+                  description: Wallet id.
+                  type: string
+              required:
+                - type
+                - hash
+                - transfer
+                - coin
+                - wallet
+                - address
+                - walletId
+        required: true
+      responses:
+        '201':
+          description: Bitgo Webhook
+      operationId: '/spot/public/webhooks/{event}'
+  # '/spot/public/trading_fees':
+  #   get:
+  #     tags:
+  #       - Spot
+  #     description: Returns trading_fees table as paginated collection
+  #     parameters:
+  #       - in: query
+  #         name: group
+  #         description: Member group for define maker/taker fee.
+  #         required: false
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: market_id
+  #         description: Market id for define maker/taker fee.
+  #         required: false
+  #         schema:
+  #           type: string
+  #           enum:
+  #             - ttkkrw
+  #             - hsskrw
+  #             - btcusd
+  #             - wmskrw
+  #             - dashkrw
+  #             - usdkrw
+  #             - algobtc
+  #             - algousd
+  #             - algokrw
+  #             - xxxxusd
+  #             - xxxxbtc
+  #             - yunakrw
+  #             - teekrw
+  #             - teqkrw
+  #             - apibtc
+  #             - opsbtc
+  #             - terkrw
+  #             - btgbtc
+  #             - apikrw
+  #             - apiusd
+  #             - btgkrw
+  #             - opsusd
+  #             - dashbtc
+  #             - opskrw
+  #             - btgdash
+  #             - btckrw
+  #             - ethkrw
+  #             - ethbtc
+  #             - ethusd
+  #             - xrpkrw
+  #             - xrpbtc
+  #             - usdtkrw
+  #             - xrpusd
+  #             - usdtusd
+  #             - ringxkrw
+  #             - ringxusd
+  #             - bchkrw
+  #             - bchbtc
+  #             - bchusd
+  #             - eoskrw
+  #             - eosbtc
+  #             - eosusd
+  #             - niaxkrw
+  #             - linkkrw
+  #             - ltckrw
+  #             - ltcbtc
+  #             - ltcusd
+  #             - xlmkrw
+  #             - xlmbtc
+  #             - xlmusd
+  #             - mkrkrw
+  #             - daikrw
+  #             - lendkrw
+  #             - balkrw
+  #             - pntkrw
+  #             - volkrw
+  #             - tetkrw
+  #             - unikrw
+  #             - t0krw
+  #             - mtskrw
+  #             - t1krw
+  #             - t2krw
+  #             - t3krw
+  #             - t4krw
+  #             - t5krw
+  #             - t6krw
+  #             - t7krw
+  #             - t8krw
+  #             - t9krw
+  #             - any
+  #       - in: query
+  #         name: limit
+  #         description: Limit the number of returned paginations. Defaults to 100.
+  #         required: false
+  #         schema:
+  #           type: integer
+  #           format: int32
+  #           minimum: 1
+  #           maximum: 1000
+  #           default: 100
+  #       - in: query
+  #         name: page
+  #         description: Specify the page of paginated results.
+  #         required: false
+  #         schema:
+  #           type: integer
+  #           format: int32
+  #           default: 1
+  #       - in: query
+  #         name: ordering
+  #         description:
+  #           If set, returned values will be sorted in specific order, defaults
+  #           to 'asc'.
+  #         required: false
+  #         schema:
+  #           type: string
+  #           enum:
+  #             - asc
+  #             - desc
+  #           default: asc
+  #       - in: query
+  #         name: order_by
+  #         description: Name of the field, which result will be ordered by.
+  #         required: false
+  #         schema:
+  #           type: string
+  #           default: id
+  #     responses:
+  #       '200':
+  #         description: Returns trading_fees table as paginated collection
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 '$ref': '#/components/schemas/TradingFee'
+  #     operationId: '/spot/public/trading_fees'
+  '/spot/public/health/ready':
+    get:
+      tags:
+        - Public
+      description: Get application readiness status
+      responses:
+        '200':
+          description: Get application readiness status
+      operationId: '/spot/public/health/ready'
+  '/spot/public/health/alive':
+    get:
+      tags:
+        - Public
+      description: Get application liveness status
+      responses:
+        '200':
+          description: Get application liveness status
+      operationId: '/spot/public/health/alive'
+  '/spot/public/version':
+    get:
+      tags:
+        - Public
+      description: Get running trade version and build details.
+      responses:
+        '200':
+          description: Get running trade version and build details.
+      operationId: '/spot/public/version'
+  '/spot/public/timestamp':
+    get:
+      tags:
+        - Public
+      description: Get server current time, in seconds since Unix epoch.
+      responses:
+        '200':
+          description: Get server current time, in seconds since Unix epoch.
+      operationId: '/spot/public/timestamp'
+  '/spot/public/member-levels':
+    get:
+      tags:
+        - Public
+      description: Returns hash of minimum levels and the privileges they provide.
+      responses:
+        '200':
+          description: Returns hash of minimum levels and the privileges they provide.
+      operationId: '/spot/public/member-levels'
+  '/spot/public/markets/{market}/tickers':
+    get:
+      tags:
+        - Public
+      description: Get ticker of specific market.
+      parameters:
+        - in: path
+          name: market
+          description: ''
+          required: true
+          schema:
+            type: string
+            enum:
+              - btckrw
+              - mtskrw
+              - ttkkrw
+              - usdtkrw
+              - wmskrw
+              - xrpkrw
+      responses:
+        '200':
+          description: Get ticker of specific market.
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Ticker'
+      operationId: '/spot/public/markets/{market}/tickers'
+  '/spot/public/markets/tickers':
+    get:
+      tags:
+        - Public
+      description:
+        Get ticker of all markets (For response doc see /:market/tickers/
+        response).
+      responses:
+        '200':
+          description:
+            Get ticker of all markets (For response doc see /:market/tickers/
+            response).
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Ticker'
+      operationId: '/spot/public/markets/tickers'
+  '/spot/public/markets/{market}/k-line':
+    get:
+      tags:
+        - Public
+      description: Get OHLC(k line) of specific market.
+      parameters:
+        - in: path
+          name: market
+          description: ''
+          required: true
+          schema:
+            type: string
+            enum:
+              - btckrw
+              - mtskrw
+              - ttkkrw
+              - usdtkrw
+              - wmskrw
+              - xrpkrw
+        - in: query
+          name: period
+          description:
+            Time period of K line, default to 1. You can choose between 1,
+            5, 15, 30, 60, 120, 240, 360, 720, 1440, 4320, 10080
+          required: false
+          schema:
+            type: integer
+            format: int32
+            enum:
+              - 1
+              - 5
+              - 15
+              - 30
+              - 60
+              - 120
+              - 240
+              - 360
+              - 720
+              - 1440
+              - 4320
+              - 10080
+            default: 1
+        - in: query
+          name: time_from
+          description:
+            An integer represents the seconds elapsed since Unix epoch. If
+            set, only k-line data after that time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: time_to
+          description:
+            An integer represents the seconds elapsed since Unix epoch. If
+            set, only k-line data till that time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description:
+            Limit the number of returned data points default to 30. Ignored
+            if time_from and time_to are given.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 10000
+            default: 30
+      responses:
+        '200':
+          description: Get OHLC(k line) of specific market.
+      operationId: '/spot/public/markets/{market}/k-line'
+  '/spot/public/markets/{market}/depth':
+    get:
+      tags:
+        - Public
+      description:
+        Get depth or specified market. Both asks and bids are sorted from
+        highest price to lowest.
+      parameters:
+        - in: path
+          name: market
+          description: ''
+          required: true
+          schema:
+            type: string
+            enum:
+              - btckrw
+              - mtskrw
+              - ttkkrw
+              - usdtkrw
+              - wmskrw
+              - xrpkrw
+        - in: query
+          name: limit
+          description: Limit the number of returned price levels. Default to 300.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 300
+      responses:
+        '200':
+          description:
+            Get depth or specified market. Both asks and bids are sorted
+            from highest price to lowest.
+      operationId: '/spot/public/markets/{market}/depth'
+  '/spot/public/markets/{market}/trades':
+    get:
+      tags:
+        - Public
+      description:
+        Get recent trades on market, each trade is included only once.
+        Trades are sorted in reverse creation order.
+      parameters:
+        - in: path
+          name: market
+          description: ''
+          required: true
+          schema:
+            type: string
+            enum:
+              - btckrw
+              - mtskrw
+              - ttkkrw
+              - usdtkrw
+              - wmskrw
+              - xrpkrw
+        - in: query
+          name: limit
+          description: Limit the number of returned trades. Default to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: timestamp
+          description:
+            An integer represents the seconds elapsed since Unix epoch.If
+            set, only trades executed before the time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: order_by
+          description:
+            If set, returned trades will be sorted in specific order, default
+            to 'desc'.
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+      responses:
+        '200':
+          description:
+            Get recent trades on market, each trade is included only once.
+            Trades are sorted in reverse creation order.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Trade'
+      operationId: '/spot/public/markets/{market}/trades'
+  '/spot/public/markets/{market}/order-book':
+    get:
+      tags:
+        - Public
+      description: Get the order book of specified market.
+      parameters:
+        - in: path
+          name: market
+          description: ''
+          required: true
+          schema:
+            type: string
+            enum:
+              - btckrw
+              - mtskrw
+              - ttkkrw
+              - usdtkrw
+              - wmskrw
+              - xrpkrw
+        - in: query
+          name: asks_limit
+          description: Limit the number of returned sell orders. Default to 20.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 200
+            default: 20
+        - in: query
+          name: bids_limit
+          description: Limit the number of returned buy orders. Default to 20.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 200
+            default: 20
+      responses:
+        '200':
+          description: Get the order book of specified market.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/OrderBook'
+      operationId: '/spot/public/markets/{market}/order-book'
+  '/spot/public/markets':
+    get:
+      tags:
+        - Public
+      description: Get all available markets.
+      parameters:
+        - in: query
+          name: limit
+          description: Limit the number of returned paginations. Defaults to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: ordering
+          description:
+            If set, returned values will be sorted in specific order, defaults
+            to 'asc'.
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: asc
+        - in: query
+          name: order_by
+          description: Name of the field, which result will be ordered by.
+          required: false
+          schema:
+            type: string
+            enum:
+              - id
+              - position
+            default: position
+        - in: query
+          name: base_unit
+          description: Strict filter for base unit
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: quote_unit
+          description: Strict filter for quote unit
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: search
+          description: ''
+          required: false
+          schema:
+            type: json
+        - in: query
+          name: search[base_code]
+          description: Search base currency code using LIKE
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: search[quote_code]
+          description: Search qoute currency code using LIKE
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: search[base_name]
+          description: Search base currency name using LIKE
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: search[quote_name]
+          description: Search quote currency name using LIKE
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get all available markets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Market'
+      operationId: '/spot/public/markets'
+  '/spot/public/currencies':
+    get:
+      tags:
+        - Public
+      description: Get list of currencies
+      parameters:
+        - in: query
+          name: limit
+          description: Limit the number of returned paginations. Defaults to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: type
+          description: Currency type
+          required: false
+          schema:
+            type: string
+            enum:
+              - fiat
+              - coin
+        - in: query
+          name: search
+          description: ''
+          required: false
+          schema:
+            type: json
+        - in: query
+          name: search[code]
+          description: Search by currency code using SQL LIKE
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: search[name]
+          description: Search by currency name using SQL LIKE
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get list of currencies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Currency'
+      operationId: '/spot/public/currencies'
+  '/spot/public/currencies/{id}':
+    get:
+      tags:
+        - Public
+      description: Get a currency
+      parameters:
+        - in: path
+          name: id
+          description: Currency code.
+          required: true
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - KRW
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+      responses:
+        '200':
+          description: Get a currency
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Currency'
+      operationId: '/spot/public/currencies/{id}'
+  '/spot/account/stats/pnl':
+    get:
+      tags:
+        - Account
+      description: Get assets pnl calculated into one currency
+      parameters:
+        - in: query
+          name: pnl_currency
+          description: Currency code in which the PnL is calculated
+          required: false
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - KRW
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+      responses:
+        '200':
+          description: Get assets pnl calculated into one currency
+      operationId: '/spot/account/stats/pnl'
+  '/spot/account/transactions':
+    get:
+      tags:
+        - Account
+      description: Get your transactions history.
+      parameters:
+        - in: query
+          name: currency
+          description: Currency code
+          required: false
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - KRW
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+        - in: query
+          name: order_by
+          description: Sorting order
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+        - in: query
+          name: time_from
+          description: An integer represents the seconds elapsed since Unix epoch.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: time_to
+          description: An integer represents the seconds elapsed since Unix epoch.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: deposit_state
+          description: Filter deposits by states.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: withdraw_state
+          description: Filter withdraws by states.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: txid
+          description: Transaction id.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          description: Limit the number of returned transactions. Default to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+      responses:
+        '200':
+          description: Get your transactions history.
+      operationId: '/spot/account/transactions'
+  '/spot/account/withdraws':
+    post:
+      tags:
+        - Account
+      description: Creates new withdrawal to active beneficiary.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                otp:
+                  description: OTP to perform action
+                  type: integer
+                  format: int32
+                beneficiary_id:
+                  description: ID of Active Beneficiary belonging to user.
+                  type: integer
+                  format: int32
+                currency:
+                  description: The currency code.
+                  type: string
+                  enum:
+                    - btc
+                    - krw
+                    - mts
+                    - ter
+                    - tpp
+                    - ttk
+                    - usdt
+                    - wms
+                    - xrp
+                    - BTC
+                    - KRW
+                    - MTS
+                    - TER
+                    - TPP
+                    - TTK
+                    - USDT
+                    - WMS
+                    - XRP
+                amount:
+                  description: The amount to withdraw.
+                  type: number
+                  format: double
+                note:
+                  description:
+                    Optional user metadata to be applied to the transaction.
+                    Used to tag transactions with memorable comments.
+                  type: string
+              required:
+                - otp
+                - beneficiary_id
+                - currency
+                - amount
+        required: true
+      responses:
+        '201':
+          description: Creates new withdrawal to active beneficiary.
+      operationId: '/spot/account/withdraws'
+    get:
+      tags:
+        - Account
+      description: List your withdraws as paginated collection.
+      parameters:
+        - in: query
+          name: currency
+          description: Currency code.
+          required: false
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - KRW
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+        - in: query
+          name: limit
+          description: Number of withdraws per page (defaults to 100, maximum is 100).
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 100
+        - in: query
+          name: state
+          description: Filter withdrawals by states.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: rid
+          description: Wallet address on the Blockchain.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: page
+          description: Page number (defaults to 1).
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+      responses:
+        '200':
+          description: List your withdraws as paginated collection.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Withdraw'
+      operationId: '/spot/account/withdraws'
+  '/spot/account/withdraws/sums':
+    get:
+      tags:
+        - Account
+      description: Returns withdrawal sums for last 4 hours and 1 month
+      responses:
+        '200':
+          description: Returns withdrawal sums for last 4 hours and 1 month
+      operationId: '/spot/account/withdraws/sums'
+  '/spot/account/beneficiaries/{id}':
+    delete:
+      tags:
+        - Account
+      description: Delete beneficiary
+      parameters:
+        - in: path
+          name: id
+          description: Beneficiary Identifier in Database
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: Delete beneficiary
+      operationId: '/spot/account/beneficiaries/{id}'
+    get:
+      tags:
+        - Account
+      description: Get beneficiary by ID
+      parameters:
+        - in: path
+          name: id
+          description: Beneficiary Identifier in Database
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Get beneficiary by ID
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Beneficiary'
+      operationId: '/spot/account/beneficiaries/{id}'
+  '/spot/account/beneficiaries/{id}/activate':
+    patch:
+      tags:
+        - Account
+      description: Activates beneficiary with pin
+      parameters:
+        - in: path
+          name: id
+          description: Beneficiary Identifier in Database
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                pin:
+                  description: Pin code for beneficiary activation
+                  type: integer
+                  format: int32
+              required:
+                - pin
+        required: true
+      responses:
+        '200':
+          description: Activates beneficiary with pin
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Beneficiary'
+      operationId: '/spot/account/beneficiaries/{id}/activate'
+  '/spot/account/beneficiaries/{id}/resend_pin':
+    patch:
+      tags:
+        - Account
+      description: Resend beneficiary pin
+      parameters:
+        - in: path
+          name: id
+          description: Beneficiary Identifier in Database
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Resend beneficiary pin
+      operationId: '/spot/account/beneficiaries/{id}/resend_pin'
+  '/spot/account/beneficiaries':
+    post:
+      tags:
+        - Account
+      description: Create new beneficiary
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                currency:
+                  description: Beneficiary currency code.
+                  type: string
+                  enum:
+                    - btc
+                    - krw
+                    - mts
+                    - ter
+                    - tpp
+                    - ttk
+                    - usdt
+                    - wms
+                    - xrp
+                    - BTC
+                    - KRW
+                    - MTS
+                    - TER
+                    - TPP
+                    - TTK
+                    - USDT
+                    - WMS
+                    - XRP
+                name:
+                  description: Human rememberable name which refer beneficiary.
+                  type: string
+                description:
+                  description: Human rememberable name which refer beneficiary.
+                  type: string
+                data:
+                  description: Beneficiary data in JSON format
+                  type: json
+              required:
+                - currency
+                - name
+                - data
+        required: true
+      responses:
+        '201':
+          description: Create new beneficiary
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Beneficiary'
+      operationId: '/spot/account/beneficiaries'
+    get:
+      tags:
+        - Account
+      description: Get list of user beneficiaries
+      parameters:
+        - in: query
+          name: currency
+          description: Beneficiary currency code.
+          required: false
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - KRW
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+        - in: query
+          name: state
+          description:
+            Defines either beneficiary active - user can use it to withdraw
+            moneyor pending - requires beneficiary activation with pin.
+          required: false
+          schema:
+            type: string
+            enum:
+              - pending
+              - active
+      responses:
+        '200':
+          description: Get list of user beneficiaries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Beneficiary'
+      operationId: '/spot/account/beneficiaries'
+  '/spot/account/deposit_address/{currency}':
+    get:
+      tags:
+        - Account
+      description:
+        Returns deposit address for account you want to deposit to by currency.
+        The address may be blank because address generation process is still in progress.
+        If this case you should try again later.
+      parameters:
+        - in: path
+          name: currency
+          description: The account you want to deposit to.
+          required: true
+          schema:
+            type: string
+            enum:
+              - btc
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+        - in: query
+          name: address_format
+          description: Address format legacy/cash
+          required: false
+          schema:
+            type: string
+            enum:
+              - legacy
+              - cash
+      responses:
+        '200':
+          description:
+            Returns deposit address for account you want to deposit to
+            by currency. The address may be blank because address generation process
+            is still in progress. If this case you should try again later.
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Deposit'
+      operationId: '/spot/account/deposit_address/{currency}'
+  '/spot/account/deposits/{txid}':
+    get:
+      tags:
+        - Account
+      description: Get details of specific deposit.
+      parameters:
+        - in: path
+          name: txid
+          description: Deposit transaction id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get details of specific deposit.
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Deposit'
+      operationId: '/spot/account/deposits/{txid}'
+  '/spot/account/deposits':
+    get:
+      tags:
+        - Account
+      description: Get your deposits history.
+      parameters:
+        - in: query
+          name: currency
+          description: Currency code
+          required: false
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+              - BTC
+              - KRW
+              - MTS
+              - TER
+              - TPP
+              - TTK
+              - USDT
+              - WMS
+              - XRP
+        - in: query
+          name: state
+          description: Filter deposits by states.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: txid
+          description: Deposit transaction id.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          description: Number of deposits per page (defaults to 100, maximum is 100).
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 100
+        - in: query
+          name: page
+          description: Page number (defaults to 1).
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+      responses:
+        '200':
+          description: Get your deposits history.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Deposit'
+      operationId: '/spot/account/deposits'
+  '/spot/account/balances/{currency}':
+    get:
+      tags:
+        - Account
+      description: Get user account by currency
+      parameters:
+        - in: path
+          name: currency
+          description: The currency code.
+          required: true
+          schema:
+            type: string
+            enum:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+      responses:
+        '200':
+          description: Get user account by currency
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Account'
+      operationId: '/spot/account/balances/{currency}'
+  '/spot/account/balances':
+    get:
+      tags:
+        - Account
+      description: Get list of user accounts
+      parameters:
+        - in: query
+          name: limit
+          description: Limit the number of returned paginations. Defaults to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: nonzero
+          description: Filter non zero balances.
+          required: false
+          schema:
+            type: Boolean
+        - in: query
+          name: search
+          description: ''
+          required: false
+          schema:
+            type: json
+        - in: query
+          name: search[currency_code]
+          description: ''
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: search[currency_name]
+          description: ''
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get list of user accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Account'
+      operationId: '/spot/account/balances'
+  '/spot/market/trades':
+    get:
+      tags:
+        - Market
+      description:
+        Get your executed trades. Trades are sorted in reverse creation
+        order.
+      parameters:
+        - in: query
+          name: market
+          description: ''
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          description: Limit the number of returned trades. Default to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: time_from
+          description:
+            An integer represents the seconds elapsed since Unix epoch.If
+            set, only trades executed after the time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: time_to
+          description:
+            An integer represents the seconds elapsed since Unix epoch.If
+            set, only trades executed before the time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: order_by
+          description:
+            If set, returned trades will be sorted in specific order, default
+            to 'desc'.
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+      responses:
+        '200':
+          description:
+            Get your executed trades. Trades are sorted in reverse creation
+            order.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Trade'
+      operationId: '/spot/market/trades'
+  '/spot/market/orders/cancel':
+    post:
+      tags:
+        - Market
+      description: Cancel all my orders.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                market:
+                  type: string
+                  enum:
+                    - btckrw
+                    - mtskrw
+                    - ttkkrw
+                    - usdtkrw
+                    - wmskrw
+                    - xrpkrw
+                side:
+                  description:
+                    If present, only sell orders (asks) or buy orders (bids)
+                    will be canncelled.
+                  type: string
+                  enum:
+                    - sell
+                    - buy
+      responses:
+        '201':
+          description: Cancel all my orders.
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Order'
+      operationId: '/spot/market/orders/cancel'
+  '/spot/market/orders/{id}/cancel':
+    post:
+      tags:
+        - Market
+      description: Cancel an order.
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Cancel an order.
+      operationId: '/spot/market/orders/{id}/cancel'
+  '/spot/market/orders':
+    post:
+      tags:
+        - Market
+      description: Create a Sell/Buy order.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                market:
+                  type: string
+                  enum:
+                    - btckrw
+                    - mtskrw
+                    - ttkkrw
+                    - usdtkrw
+                    - wmskrw
+                    - xrpkrw
+                side:
+                  type: string
+                  enum:
+                    - sell
+                    - buy
+                volume:
+                  type: number
+                  format: double
+                ord_type:
+                  type: string
+                  enum:
+                    - market
+                    - limit
+                  default: limit
+                price:
+                  type: number
+                  format: double
+              required:
+                - market
+                - side
+                - volume
+                - price
+        required: true
+      responses:
+        '201':
+          description: Create a Sell/Buy order.
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Order'
+      operationId: '/spot/market/orders'
+    get:
+      tags:
+        - Market
+      description: Get your orders, result is paginated.
+      parameters:
+        - in: query
+          name: market
+          description: ''
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: base_unit
+          description: ''
+          required: false
+          schema:
+            type: string
+            enum:
+              - btc
+              - mts
+              - ttk
+              - usdt
+              - wms
+              - xrp
+        - in: query
+          name: quote_unit
+          description: ''
+          required: false
+          schema:
+            type: string
+            enum:
+              - krw
+              - krw
+              - krw
+              - krw
+              - krw
+              - krw
+        - in: query
+          name: state
+          description: Filter order by state.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          description: Limit the number of returned orders, default to 100.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 1000
+            default: 100
+        - in: query
+          name: page
+          description: Specify the page of paginated results.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - in: query
+          name: order_by
+          description:
+            If set, returned orders will be sorted in specific order, default
+            to "desc".
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+        - in: query
+          name: ord_type
+          description: Filter order by ord_type.
+          required: false
+          schema:
+            type: string
+            enum:
+              - market
+              - limit
+        - in: query
+          name: type
+          description: Filter order by type.
+          required: false
+          schema:
+            type: string
+            enum:
+              - buy
+              - sell
+        - in: query
+          name: time_from
+          description:
+            An integer represents the seconds elapsed since Unix epoch.If
+            set, only orders created after the time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: time_to
+          description:
+            An integer represents the seconds elapsed since Unix epoch.If
+            set, only orders created before the time will be returned.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Get your orders, result is paginated.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  '$ref': '#/components/schemas/Order'
+      operationId: '/spot/market/orders'
+  '/spot/market/orders/{id}':
+    get:
+      tags:
+        - Market
+      description: Get information of specified order.
+      parameters:
+        - in: path
+          name: id
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get information of specified order.
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Order'
+      operationId: '/spot/market/orders/{id}'
+  # '/coinmarketcap/orderbook/{market_pair}':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description: Get depth or specified market
+  #     parameters:
+  #       - in: path
+  #         name: market_pair
+  #         description: A pair such as "LTC_BTC"
+  #         required: true
+  #         schema:
+  #           type: string
+  #       - in: query
+  #         name: depth
+  #         description: 'Orders depth quantity: [0,5,10,20,50,100,500]'
+  #         required: false
+  #         schema:
+  #           type: integer
+  #           format: int32
+  #           minimum: 0
+  #           maximum: 500
+  #     responses:
+  #       '200':
+  #         description: Get depth or specified market
+  #     operationId: '/coinmarketcap/orderbook/{market_pair}'
+  # '/coinmarketcap/trades/{market_pair}':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description: Get recent trades on market
+  #     parameters:
+  #       - in: path
+  #         name: market_pair
+  #         description: A pair such as "LTC_BTC"
+  #         required: true
+  #         schema:
+  #           type: string
+  #     responses:
+  #       '200':
+  #         description: Get recent trades on market
+  #         content:
+  #           application/json:
+  #             schema:
+  #               '$ref': '#/components/schemas/Trade'
+  #     operationId: '/coinmarketcap/trades/{market_pair}'
+  # '/coinmarketcap/ticker':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description: Get 24-hour pricing and volume summary for each market pair
+  #     responses:
+  #       '200':
+  #         description: Get 24-hour pricing and volume summary for each market pair
+  #         content:
+  #           application/json:
+  #             schema:
+  #               '$ref': '#/components/schemas/Ticker'
+  #     operationId: '/coinmarketcap/ticker'
+  # '/coinmarketcap/assets':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description: Details on crypto currencies available on the exchange
+  #     responses:
+  #       '200':
+  #         description: Details on crypto currencies available on the exchange
+  #     operationId: '/coinmarketcap/assets'
+  # '/coinmarketcap/summary':
+  #   get:
+  #     tags:
+  #       - CoinMarketCap
+  #     description:
+  #       Overview of market data for all tickers and all market pairs on
+  #       the exchange
+  #     responses:
+  #       '200':
+  #         description:
+  #           Overview of market data for all tickers and all market pairs
+  #           on the exchange
+  #     operationId: '/coinmarketcap/summary'
+  '/spot/coingecko/historical_trades':
+    get:
+      tags:
+        - CoinGecko
+      description: Get recent trades on market
+      parameters:
+        - in: query
+          name: ticker_id
+          description: A pair such as "LTC_BTC"
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: type
+          description: To indicate nature of trade - buy/sell
+          required: false
+          schema:
+            type: string
+            enum:
+              - buy
+              - sell
+        - in: query
+          name: limit
+          description:
+            Number of historical trades to retrieve from time of query. [0,
+            200, 500...]. 0 returns full history
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 1000
+        - in: query
+          name: start_time
+          description: ''
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: end_time
+          description: ''
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Get recent trades on market
+      operationId: '/spot/coingecko/historical_trades'
+  '/spot/coingecko/orderbook':
+    get:
+      tags:
+        - CoinGecko
+      description: Get depth or specified market
+      parameters:
+        - in: query
+          name: ticker_id
+          description: A pair such as "LTC_BTC"
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: depth
+          description: 'Orders depth quantity: [0, 100, 200, 500...]'
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 1000
+      responses:
+        '200':
+          description: Get depth or specified market
+      operationId: '/spot/coingecko/orderbook'
+  '/spot/coingecko/tickers':
+    get:
+      tags:
+        - CoinGecko
+      description: Get list of all available trading pairs
+      responses:
+        '200':
+          description: Get list of all available trading pairs
+          content:
+            application/json:
+              schema:
+                '$ref': '#/components/schemas/Ticker'
+      operationId: '/spot/coingecko/tickers'
+  '/spot/coingecko/pairs':
+    get:
+      tags:
+        - CoinGecko
+      description: Get list of all available trading pairs
+      responses:
+        '200':
+          description: Get list of all available trading pairs
+      operationId: '/spot/coingecko/pairs'
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: JWT
+      in: header
+  schemas:
+    WithdrawLimit:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique withdraw limit table identifier in database.
+        group:
+          type: string
+          description: Member group for define withdraw limits.
+        kyc_level:
+          type: string
+          description: KYC level for define withdraw limits.
+        limit_24_hour:
+          type: number
+          format: double
+          description: 24 hours withdraw limit.
+        limit_1_month:
+          type: number
+          format: double
+          description: 1 month withdraw limit.
+        created_at:
+          type: string
+          description: Withdraw limit table created time in iso8601 format.
+        updated_at:
+          type: string
+          description: Withdraw limit table updated time in iso8601 format.
+      description: Returns withdraw limits table as paginated collection
+    TradingFee:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique trading fee table identifier in database.
+        group:
+          type: string
+          description: Member group for define maker/taker fee.
+        market_id:
+          type: string
+          description: Market id for define maker/taker fee.
+        maker:
+          type: number
+          format: double
+          description: Market maker fee.
+        taker:
+          type: number
+          format: double
+          description: Market taker fee.
+        created_at:
+          type: string
+          description: Trading fee table created time in iso8601 format.
+        updated_at:
+          type: string
+          description: Trading fee table updated time in iso8601 format.
+      description: Returns trading_fees table as paginated collection
+    Ticker:
+      type: object
+      properties:
+        at:
+          type: integer
+          format: int32
+          description: Timestamp of ticker
+        ticker:
+          '$ref': '#/components/schemas/TickerEntry'
+      description: Get list of all available trading pairs
+    TickerEntry:
+      type: object
+      properties:
+        low:
+          type: number
+          format: double
+          description:
+            The lowest trade price during last 24 hours (0.0 if no trades
+            executed during last 24 hours)
+        high:
+          type: number
+          format: double
+          description:
+            The highest trade price during last 24 hours (0.0 if no trades
+            executed during last 24 hours)
+        open:
+          type: number
+          format: double
+          description: Price of the first trade executed 24 hours ago or less
+        last:
+          type: number
+          format: double
+          description: The last executed trade price
+        volume:
+          type: number
+          format: double
+          description: Total volume of trades executed during last 24 hours
+        amount:
+          type: number
+          format: double
+          description: Total amount of trades executed during last 24 hours
+        vol:
+          type: number
+          format: double
+          description: Alias to volume
+        avg_price:
+          type: number
+          format: double
+          description:
+            Average price more precisely VWAP is calculated by adding up
+            the total traded for every transaction(price multiplied by the number
+            of shares traded) and then dividing by the total shares traded
+        price_change_percent:
+          type: string
+          description:
+            Price change in the next format +3.19%.Price change is calculated
+            using next formula (last - open) / open * 100%
+        at:
+          type: integer
+          format: int32
+          description: Timestamp of ticker
+    Trade:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Trade ID.
+        price:
+          type: number
+          format: double
+          description: Trade price.
+        amount:
+          type: number
+          format: double
+          description: Trade amount.
+        total:
+          type: number
+          format: double
+          description: Trade total (Amount * Price).
+        fee_currency:
+          type: number
+          format: double
+          description: Currency user's fees were charged in.
+        fee:
+          type: number
+          format: double
+          description: Percentage of fee user was charged for performed trade.
+        fee_amount:
+          type: number
+          format: double
+          description: Amount of fee user was charged for performed trade.
+        market:
+          type: string
+          description: Trade market id.
+        created_at:
+          type: string
+          description: Trade create time in iso8601 format.
+        taker_type:
+          type: string
+          description: Trade taker order type (sell or buy).
+        side:
+          type: string
+          description: Trade side.
+        order_id:
+          type: integer
+          format: int32
+          description: Order id.
+      description: Get recent trades on market
+    OrderBook:
+      type: object
+      properties:
+        asks:
+          type: array
+          items:
+            '$ref': '#/components/schemas/Order'
+          description: Asks in orderbook
+        bids:
+          type: array
+          items:
+            '$ref': '#/components/schemas/Order'
+          description: Bids in orderbook
+      description: Get the order book of specified market.
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique order id.
+        uuid:
+          type: string
+          description: Unique order UUID.
+        side:
+          type: string
+          description: Either 'sell' or 'buy'.
+        ord_type:
+          type: string
+          description: Type of order, either 'limit' or 'market'.
+        price:
+          type: number
+          format: double
+          description:
+            Price for each unit. e.g.If you want to sell/buy 1 btc at 3000
+            usd, the price is '3000.0'
+        avg_price:
+          type: number
+          format: double
+          description: Average execution price, average of price in trades.
+        state:
+          type: string
+          description:
+            One of 'wait', 'done', or 'cancel'.An order in 'wait' is an
+            active order, waiting fulfillment;a 'done' order is an order fulfilled;'cancel'
+            means the order has been canceled.
+        market:
+          type: string
+          description:
+            The market in which the order is placed, e.g. 'btcusd'.All
+            available markets can be found at /api/v2/markets.
+        created_at:
+          type: string
+          description: Order create time in iso8601 format.
+        updated_at:
+          type: string
+          description: Order updated time in iso8601 format.
+        origin_volume:
+          type: number
+          format: double
+          description:
+            The amount user want to sell/buy.An order could be partially
+            executed,e.g. an order sell 5 btc can be matched with a buy 3 btc order,left
+            2 btc to be sold; in this case the order's volume would be '5.0',its remaining_volume
+            would be '2.0', its executed volume is '3.0'.
+        remaining_volume:
+          type: number
+          format: double
+          description: The remaining volume, see 'volume'.
+        executed_volume:
+          type: number
+          format: double
+          description: The executed volume, see 'volume'.
+        maker_fee:
+          type: number
+          format: double
+          description: Fee for maker.
+        taker_fee:
+          type: number
+          format: double
+          description: Fee for taker.
+        trades_count:
+          type: integer
+          format: int32
+          description: Count of trades.
+        trades:
+          type: array
+          items:
+            '$ref': '#/components/schemas/Trade'
+          description: Trades wiht this order.
+      description: Get your orders, result is paginated.
+    Market:
+      type: object
+      properties:
+        id:
+          type: string
+          description:
+            Unique market id. It's always in the form of xxxyyy,where xxx
+            is the base currency code, yyy is the quotecurrency code, e.g. 'btcusd'.
+            All available markets canbe found at /api/v2/markets.
+        name:
+          type: string
+          description: Market name.
+        base_unit:
+          type: string
+          description: Market Base unit.
+        quote_unit:
+          type: string
+          description: Market Quote unit.
+        min_price:
+          type: number
+          format: double
+          description: Minimum order price.
+        max_price:
+          type: number
+          format: double
+          description: Maximum order price.
+        min_amount:
+          type: number
+          format: double
+          description: Minimum order amount.
+        amount_precision:
+          type: number
+          format: double
+          description: Precision for order amount.
+        price_precision:
+          type: number
+          format: double
+          description: Precision for order price.
+        state:
+          type: string
+          description: Market state defines if user can see/trade on current market.
+      description: Get all available markets.
+    Currency:
+      type: object
+      properties:
+        id:
+          type: string
+          example: btc
+          description: Currency code.
+        name:
+          type: string
+          example: Bitcoin
+          description: Currency name
+        description:
+          type: string
+          example: btc
+          description: Currency description
+        homepage:
+          type: string
+          example: btc
+          description: Currency homepage
+        price:
+          type: string
+          description: Currency current price
+        explorer_transaction:
+          type: string
+          example: https://testnet.blockchain.info/tx/
+          description: Currency transaction exprorer url template
+        explorer_address:
+          type: string
+          example: https://testnet.blockchain.info/address/
+          description: Currency address exprorer url template
+        type:
+          type: string
+          example: coin
+          description: Currency type
+        deposit_enabled:
+          type: string
+          description: Currency deposit possibility status (true/false).
+        withdrawal_enabled:
+          type: string
+          description: Currency withdrawal possibility status (true/false).
+        deposit_fee:
+          type: string
+          example: '0.0'
+          description: Currency deposit fee
+        min_deposit_amount:
+          type: string
+          example: '0.0'
+          description: Minimal deposit amount
+        withdraw_fee:
+          type: string
+          example: '0.0009'
+          description: Currency withdraw fee
+        min_withdraw_amount:
+          type: string
+          example: '0.0005'
+          description: Minimal withdraw amount
+        withdraw_limit_24h:
+          type: string
+          example: '0.0'
+          description: Currency 24h withdraw limit
+        withdraw_limit_72h:
+          type: string
+          example: '0.0'
+          description: Currency 72h withdraw limit
+        base_factor:
+          type: string
+          example: 100000000
+          description: Currency base factor
+        precision:
+          type: string
+          example: 8
+          description: Currency precision
+        position:
+          type: string
+          example: 8
+          description: Position used for defining currencies order
+        icon_url:
+          type: string
+          example: https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg
+          description: Currency icon
+        min_confirmations:
+          type: string
+          description:
+            Number of confirmations required for confirming deposit or
+            withdrawal
+      description: Get a currency
+    Withdraw:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: The withdrawal id.
+        currency:
+          type: string
+          description: The currency code.
+        type:
+          type: string
+          description: The withdrawal type
+        amount:
+          type: string
+          description: The withdrawal amount
+        fee:
+          type: number
+          format: double
+          description: The exchange fee.
+        blockchain_txid:
+          type: string
+          description: The withdrawal transaction id.
+        rid:
+          type: string
+          description: The beneficiary ID or wallet address on the Blockchain.
+        state:
+          type: string
+          description: The withdrawal state.
+        confirmations:
+          type: integer
+          format: int32
+          description: Number of confirmations.
+        note:
+          type: string
+          description: Withdraw note.
+        transfer_type:
+          type: string
+          description: Withdraw transfer type
+        created_at:
+          type: string
+          description: The datetimes for the withdrawal.
+        updated_at:
+          type: string
+          description: The datetimes for the withdrawal.
+        done_at:
+          type: string
+          description: The datetime when withdraw was completed
+      description: List your withdraws as paginated collection.
+    Beneficiary:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Beneficiary Identifier in Database
+        currency:
+          type: string
+          description: Beneficiary currency code.
+        uid:
+          type: string
+          description: Beneficiary owner
+        name:
+          type: string
+          description: Human rememberable name which refer beneficiary.
+        description:
+          type: string
+          description: Human rememberable description of beneficiary.
+        data:
+          type: json
+          description:
+            Bank Account details for fiat Beneficiary in JSON format.For
+            crypto it's blockchain address.
+        state:
+          type: string
+          description:
+            Defines either beneficiary active - user can use it to withdraw
+            moneyor pending - requires beneficiary activation with pin.
+        sent_at:
+          type: string
+          description: Time when last pin was sent
+      description: Get list of user beneficiaries
+    Deposit:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique deposit id.
+        currency:
+          type: string
+          description: Deposit currency id.
+        amount:
+          type: number
+          format: double
+          description: Deposit amount.
+        fee:
+          type: number
+          format: double
+          description: Deposit fee.
+        txid:
+          type: string
+          description: Deposit transaction id.
+        confirmations:
+          type: integer
+          format: int32
+          description: Number of deposit confirmations.
+        state:
+          type: string
+          description: Deposit state.
+        transfer_type:
+          type: string
+          description: Deposit transfer type
+        created_at:
+          type: string
+          description: The datetime when deposit was created.
+        completed_at:
+          type: string
+          description: The datetime when deposit was completed..
+        tid:
+          type: string
+          description: The shared transaction ID
+      description: Get your deposits history.
+    Account:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code.
+        balance:
+          type: number
+          format: double
+          description: Account balance.
+        locked:
+          type: number
+          format: double
+          description: Account locked funds.
+        deposit_address:
+          '$ref': '#/components/schemas/PaymentAddress'
+      description: Get list of user accounts
+    PaymentAddress:
+      type: object
+      properties:
+        currencies:
+          type: array
+          items:
+            type: string
+            example:
+              - btc
+              - krw
+              - mts
+              - ter
+              - tpp
+              - ttk
+              - usdt
+              - wms
+              - xrp
+          description: Currencies codes.
+        address:
+          type: string
+          description: Payment address.
+        state:
+          type: string
+          description: Payment address state.
+    Transactions:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Recipient address of transaction.
+        currency:
+          type: string
+          description: Transaction currency id.
+        amount:
+          type: number
+          format: double
+          description: Transaction amount.
+        fee:
+          type: number
+          format: double
+          description: Transaction fee.
+        txid:
+          type: string
+          description: Transaction id.
+        state:
+          type: string
+          description: Transaction state.
+        note:
+          type: string
+          description: Withdraw note.
+        confirmations:
+          type: integer
+          format: int32
+          description: Number of confirmations.
+        created_at:
+          type: string
+          description: Transaction created time in iso8601 format.
+        updated_at:
+          type: string
+          description: Transaction updated time in iso8601 format.
+        type:
+          type: string
+          description: Type of transaction
+    Member:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: Member UID.
+        email:
+          type: string
+          description: Member email.
+        accounts:
+          type: array
+          items:
+            '$ref': '#/components/schemas/Account'
+          description: Member accounts.
