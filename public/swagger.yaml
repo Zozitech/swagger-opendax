@@ -1,19 +1,19 @@
 ---
 openapi: 3.0.0
 info:
-  title: BITGoGet User API
+  title: BggEx User API
   version: v2
   description: |-
     To authenticate using API key, you need to pass the following 3 headers:
 
-    - X-Auth-Apikey: Access Key for API key [Create Here](https://bitgoget.com/spot/account/api-keys)
+    - X-Auth-Apikey: Access Key for API key [Create Here](https://bggex.com/spot/account/api-keys)
     - X-Auth-Nonce: Timestamp in milliseconds (can be passed as a string)
     - X-Auth-Signature: HMAC-SHA256, calculated using concatenation of X-Auth-Nonce and Access Key.
   x-logo:
     url: /logo-text.webp
-    altText: BITGoGet Logo
+    altText: BggEx Logo
 servers:
-  - url: https://bitgoget.com/api/v2
+  - url: https://bggex.com/api/v2
 tags:
   - name: Public
     description: Operations about publics
