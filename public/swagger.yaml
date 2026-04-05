@@ -109,7 +109,7 @@ paths:
     post:
       tags:
         - Public
-      description: Bitgo Webhook
+      description: WikaEx Webhook
       parameters:
         - in: path
           name: event
@@ -158,7 +158,7 @@ paths:
         required: true
       responses:
         '201':
-          description: Bitgo Webhook
+          description: WikaEx Webhook
       operationId: '/spot/public/webhooks/{event}'
   # '/spot/public/trading_fees':
   #   get:
