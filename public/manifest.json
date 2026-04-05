@@ -1,19 +1,19 @@
 {
-  "short_name": "BITGoGet API",
-  "name": "BITGoGet API",
+  "short_name": "WikaEx API Docs",
+  "name": "WikaEx API Documentation",
   "icons": [
     {
-      "src": "BITGoGet.svg",
+      "src": "WikaEx.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "BITGoGet.svg",
+      "src": "WikaEx.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "BITGoGet.svg",
+      "src": "WikaEx.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }

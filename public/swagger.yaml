@@ -1,30 +1,44 @@
 ---
 openapi: 3.0.0
 info:
-  title: BITGoGet User API
+  title: WikaEx API
   version: v2
   description: |-
-    To authenticate using API key, you need to pass the following 3 headers:
+    # Welcome to WikaEx API
 
-    - X-Auth-Apikey: Access Key for API key [Create Here](https://bitgoget.com/spot/account/api-keys)
-    - X-Auth-Nonce: Timestamp in milliseconds (can be passed as a string)
-    - X-Auth-Signature: HMAC-SHA256, calculated using concatenation of X-Auth-Nonce and Access Key.
+    WikaEx provides a comprehensive RESTful API for programmatic access to our cryptocurrency exchange platform. Use our API to access real-time market data, manage your account, place and manage orders, and more.
+
+    ## Authentication
+
+    All authenticated endpoints require the following headers:
+
+    | Header | Description |
+    |--------|-------------|
+    | `X-Auth-Apikey` | Your API Access Key — [Generate one here](https://wikaex.com/profile/my-api-key) |
+    | `X-Auth-Nonce` | Current timestamp in milliseconds |
+    | `X-Auth-Signature` | HMAC-SHA256 signature, computed from the concatenation of `X-Auth-Nonce` and your Access Key, signed with your Secret Key |
+
+    ## Rate Limits
+
+    API requests are rate-limited to ensure fair usage. Please refer to the response headers for your current rate limit status.
+
+    ## Support
+
+    For questions or assistance, reach out to our team at [support@wikaex.com](mailto:support@wikaex.com).
   x-logo:
     url: /logo-text.webp
-    altText: BITGoGet Logo
+    altText: WikaEx Logo
 servers:
-  - url: https://bitgoget.com/api/v2
+  - url: https://wikaex.com/api
 tags:
   - name: Public
-    description: Operations about publics
+    description: Public endpoints — no authentication required. Access market data, tickers, order books, currencies, and more.
   - name: Account
-    description: Operations about accounts
+    description: Account management — requires authentication. View balances, manage deposits, withdrawals, and API keys.
   - name: Market
-    description: Operations about markets
-  # - name: CoinMarketCap
-  #   description: Endpoints required by CoinMarketCap
+    description: Trading endpoints — requires authentication. Place orders, view trade history, and manage open positions.
   - name: CoinGecko
-    description: Endpoints required by CoinGecko
+    description: Endpoints compatible with CoinGecko data aggregation requirements.
 paths:
   '/spot/public/withdraw_limits':
     get:
@@ -300,33 +314,33 @@ paths:
         '200':
           description: Get application liveness status
       operationId: '/spot/public/health/alive'
-  '/spot/public/version':
-    get:
-      tags:
-        - Public
-      description: Get running trade version and build details.
-      responses:
-        '200':
-          description: Get running trade version and build details.
-      operationId: '/spot/public/version'
-  '/spot/public/timestamp':
-    get:
-      tags:
-        - Public
-      description: Get server current time, in seconds since Unix epoch.
-      responses:
-        '200':
-          description: Get server current time, in seconds since Unix epoch.
-      operationId: '/spot/public/timestamp'
-  '/spot/public/member-levels':
-    get:
-      tags:
-        - Public
-      description: Returns hash of minimum levels and the privileges they provide.
-      responses:
-        '200':
-          description: Returns hash of minimum levels and the privileges they provide.
-      operationId: '/spot/public/member-levels'
+  # '/spot/public/version':
+  #   get:
+  #     tags:
+  #       - Public
+  #     description: Get running trade version and build details.
+  #     responses:
+  #       '200':
+  #         description: Get running trade version and build details.
+  #     operationId: '/spot/public/version'
+  # '/spot/public/timestamp':
+  #   get:
+  #     tags:
+  #       - Public
+  #     description: Get server current time, in seconds since Unix epoch.
+  #     responses:
+  #       '200':
+  #         description: Get server current time, in seconds since Unix epoch.
+  #     operationId: '/spot/public/timestamp'
+  # '/spot/public/member-levels':
+  #   get:
+  #     tags:
+  #       - Public
+  #     description: Returns hash of minimum levels and the privileges they provide.
+  #     responses:
+  #       '200':
+  #         description: Returns hash of minimum levels and the privileges they provide.
+  #     operationId: '/spot/public/member-levels'
   '/spot/public/markets/{market}/tickers':
     get:
       tags:

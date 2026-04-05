@@ -3,16 +3,3 @@
 body {
   margin: 0px;
 }
-.redoc-wrap {
-  background-color: #121212 !important;
-  color: #ffffff;
-}
-
-h5 {
-  color: #ffffff !important;
-}
-
-a[href="https://redocly.com/redoc/"]
-{
-  display: none !important;
-}

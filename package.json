@@ -10,10 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "rapidoc": "^9.3.4",
+    "@scalar/api-reference-react": "^0.9.20",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "redoc": "^2.5.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
