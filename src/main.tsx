@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         withDefaultFonts: false,
         servers: [
           {
-            url: `${API_BASE_URL}/api`,
+            url: `${API_BASE_URL}/rest/core`,
             description: 'API Server',
           },
         ],
