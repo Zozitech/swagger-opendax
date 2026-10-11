@@ -1,12 +1,12 @@
 ---
 openapi: 3.0.0
 info:
-  title: WikaEx API
+  title: KpowBIT API
   version: v2
   description: |-
-    # Welcome to WikaEx API
+    # Welcome to KpowBIT API
 
-    WikaEx provides a comprehensive RESTful API for programmatic access to our cryptocurrency exchange platform. Use our API to access real-time market data, manage your account, place and manage orders, and more.
+    KpowBIT provides a comprehensive RESTful API for programmatic access to our cryptocurrency exchange platform. Use our API to access real-time market data, manage your account, place and manage orders, and more.
 
     ## Authentication
 
@@ -14,7 +14,7 @@ info:
 
     | Header | Description |
     |--------|-------------|
-    | `X-Auth-Apikey` | Your API Access Key — [Generate one here](https://wikaex.com/profile/my-api-key) |
+    | `X-Auth-Apikey` | Your API Access Key — [Generate one here](https://trade.kpowbit.com/profile/my-api-key) |
     | `X-Auth-Nonce` | Current timestamp in milliseconds |
     | `X-Auth-Signature` | HMAC-SHA256 signature, computed from the concatenation of `X-Auth-Nonce` and your Access Key, signed with your Secret Key |
 
@@ -24,12 +24,12 @@ info:
 
     ## Support
 
-    For questions or assistance, reach out to our team at [support@wikaex.com](mailto:support@wikaex.com).
+    For questions or assistance, reach out to our team at [support@KpowBIT.com](mailto:support@KpowBIT.com).
   x-logo:
     url: /logo-text.webp
-    altText: WikaEx Logo
+    altText: KpowBIT Logo
 servers:
-  - url: https://wikaex.com/api
+  - url: https://trade.kpowbit.com/rest/core
 tags:
   - name: Public
     description: Public endpoints — no authentication required. Access market data, tickers, order books, currencies, and more.
@@ -40,7 +40,7 @@ tags:
   - name: CoinGecko
     description: Endpoints compatible with CoinGecko data aggregation requirements.
 paths:
-  '/spot/public/withdraw_limits':
+  '/public/withdraw_limits':
     get:
       tags:
         - Public
@@ -104,12 +104,12 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/WithdrawLimit'
-      operationId: '/spot/public/withdraw_limits'
-  '/spot/public/webhooks/{event}':
+      operationId: '/public/withdraw_limits'
+  '/public/webhooks/{event}':
     post:
       tags:
         - Public
-      description: WikaEx Webhook
+      description: KpowBIT Webhook
       parameters:
         - in: path
           name: event
@@ -158,9 +158,9 @@ paths:
         required: true
       responses:
         '201':
-          description: WikaEx Webhook
-      operationId: '/spot/public/webhooks/{event}'
-  # '/spot/public/trading_fees':
+          description: KpowBIT Webhook
+      operationId: '/public/webhooks/{event}'
+  # '/public/trading_fees':
   #   get:
   #     tags:
   #       - Spot
@@ -295,8 +295,8 @@ paths:
   #               type: array
   #               items:
   #                 '$ref': '#/components/schemas/TradingFee'
-  #     operationId: '/spot/public/trading_fees'
-  '/spot/public/health/ready':
+  #     operationId: '/public/trading_fees'
+  '/public/health/ready':
     get:
       tags:
         - Public
@@ -304,8 +304,8 @@ paths:
       responses:
         '200':
           description: Get application readiness status
-      operationId: '/spot/public/health/ready'
-  '/spot/public/health/alive':
+      operationId: '/public/health/ready'
+  '/public/health/alive':
     get:
       tags:
         - Public
@@ -313,8 +313,8 @@ paths:
       responses:
         '200':
           description: Get application liveness status
-      operationId: '/spot/public/health/alive'
-  # '/spot/public/version':
+      operationId: '/public/health/alive'
+  # '/public/version':
   #   get:
   #     tags:
   #       - Public
@@ -322,8 +322,8 @@ paths:
   #     responses:
   #       '200':
   #         description: Get running trade version and build details.
-  #     operationId: '/spot/public/version'
-  # '/spot/public/timestamp':
+  #     operationId: '/public/version'
+  # '/public/timestamp':
   #   get:
   #     tags:
   #       - Public
@@ -331,8 +331,8 @@ paths:
   #     responses:
   #       '200':
   #         description: Get server current time, in seconds since Unix epoch.
-  #     operationId: '/spot/public/timestamp'
-  # '/spot/public/member-levels':
+  #     operationId: '/public/timestamp'
+  # '/public/member-levels':
   #   get:
   #     tags:
   #       - Public
@@ -340,8 +340,8 @@ paths:
   #     responses:
   #       '200':
   #         description: Returns hash of minimum levels and the privileges they provide.
-  #     operationId: '/spot/public/member-levels'
-  '/spot/public/markets/{market}/tickers':
+  #     operationId: '/public/member-levels'
+  '/public/markets/{market}/tickers':
     get:
       tags:
         - Public
@@ -367,8 +367,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Ticker'
-      operationId: '/spot/public/markets/{market}/tickers'
-  '/spot/public/markets/tickers':
+      operationId: '/public/markets/{market}/tickers'
+  '/public/markets/tickers':
     get:
       tags:
         - Public
@@ -384,8 +384,8 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Ticker'
-      operationId: '/spot/public/markets/tickers'
-  '/spot/public/markets/{market}/k-line':
+      operationId: '/public/markets/tickers'
+  '/public/markets/{market}/k-line':
     get:
       tags:
         - Public
@@ -460,8 +460,8 @@ paths:
       responses:
         '200':
           description: Get OHLC(k line) of specific market.
-      operationId: '/spot/public/markets/{market}/k-line'
-  '/spot/public/markets/{market}/depth':
+      operationId: '/public/markets/{market}/k-line'
+  '/public/markets/{market}/depth':
     get:
       tags:
         - Public
@@ -497,8 +497,8 @@ paths:
           description:
             Get depth or specified market. Both asks and bids are sorted
             from highest price to lowest.
-      operationId: '/spot/public/markets/{market}/depth'
-  '/spot/public/markets/{market}/trades':
+      operationId: '/public/markets/{market}/depth'
+  '/public/markets/{market}/trades':
     get:
       tags:
         - Public
@@ -561,8 +561,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Trade'
-      operationId: '/spot/public/markets/{market}/trades'
-  '/spot/public/markets/{market}/order-book':
+      operationId: '/public/markets/{market}/trades'
+  '/public/markets/{market}/order-book':
     get:
       tags:
         - Public
@@ -610,8 +610,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/OrderBook'
-      operationId: '/spot/public/markets/{market}/order-book'
-  '/spot/public/markets':
+      operationId: '/public/markets/{market}/order-book'
+  '/public/markets':
     get:
       tags:
         - Public
@@ -708,8 +708,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Market'
-      operationId: '/spot/public/markets'
-  '/spot/public/currencies':
+      operationId: '/public/markets'
+  '/public/currencies':
     get:
       tags:
         - Public
@@ -769,8 +769,8 @@ paths:
                 type: array
                 items:
                   '$ref': '#/components/schemas/Currency'
-      operationId: '/spot/public/currencies'
-  '/spot/public/currencies/{id}':
+      operationId: '/public/currencies'
+  '/public/currencies/{id}':
     get:
       tags:
         - Public
@@ -808,7 +808,7 @@ paths:
             application/json:
               schema:
                 '$ref': '#/components/schemas/Currency'
-      operationId: '/spot/public/currencies/{id}'
+      operationId: '/public/currencies/{id}'
   '/spot/account/stats/pnl':
     get:
       tags:

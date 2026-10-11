@@ -4,7 +4,7 @@ import { ApiReferenceReact } from '@scalar/api-reference-react';
 import '@scalar/api-reference-react/style.css';
 import './main.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://wikaex.com';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://trade.kpowbit.com';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           }
         `,
         metaData: {
-          title: 'WikaEx API Documentation',
+          title: 'KpowBIT API Documentation',
         },
       }}
     />
