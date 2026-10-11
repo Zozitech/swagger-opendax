@@ -21,16 +21,16 @@ services:
   #   container_name: "simple-service"
   #   labels:
   #     - "traefik.enable=true"
-  #     - "traefik.http.routers.whoami.rule=Host(`api.nody.live`)"
+  #     - "traefik.http.routers.whoami.rule=Host(`api.kpowbit.com`)"
   #     - "traefik.http.routers.whoami.entrypoints=web"
 
   api-swagger:
     build: .
     restart: always
     ports:
-      - '3000:80'
+      - '3000:3000'
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.font-end.rule=Host(`api.nody.live`)'
+      - 'traefik.http.routers.font-end.rule=Host(`api.kpowbit.com`)'
       - 'traefik.http.routers.font-end.entrypoints=web'
       - 'traefik.http.services.font-end.loadbalancer.server.port=3000'

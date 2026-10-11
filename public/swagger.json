@@ -1,17 +1,19 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "BitxOnex User API",
+    "title": "KpowBIT Exchange API",
     "contact": {
-      "name": "tech@kpowbit.com",
+      "name": "KpowBIT API Support",
       "url": "https://trade.kpowbit.com",
       "email": "tech@kpowbit.com"
     },
-    "version": "v2"
+    "version": "v1.0.0-template",
+    "description": "KpowBIT Exchange API documentation template based on the supplied OpenDAX/Peatio Swagger specification. Review authentication, request schemas, and endpoint behavior against your deployed backend before publishing."
   },
   "servers": [
     {
-      "url": "https://trade.kpowbit.com/rest/core"
+      "url": "https://trade.kpowbit.com/rest/core",
+      "description": "KpowBIT Exchange API (update for your environment)"
     }
   ],
   "paths": {
@@ -89,7 +91,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicWithdrawLimits"
       }
@@ -171,7 +173,7 @@
           }
         },
         "tags": [
-          "api"
+          "Webhooks"
         ],
         "operationId": "postApiV2tradePublicWebhooksEvent"
       }
@@ -322,7 +324,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicTradingFees"
       }
@@ -339,7 +341,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicHealthReady"
       }
@@ -356,7 +358,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicHealthAlive"
       }
@@ -373,7 +375,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicVersion"
       }
@@ -390,7 +392,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicTimestamp"
       }
@@ -407,7 +409,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicMemberLevels"
       }
@@ -444,7 +446,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarketsMarketTickers"
       }
@@ -464,7 +466,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarketsTickers"
       }
@@ -548,7 +550,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarketsMarketKLine"
       }
@@ -593,7 +595,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarketsMarketDepth"
       }
@@ -664,7 +666,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarketsMarketTrades"
       }
@@ -726,7 +728,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarketsMarketOrderBook"
       }
@@ -844,7 +846,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - Markets"
         ],
         "operationId": "getApiV2tradePublicMarkets"
       }
@@ -921,7 +923,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicCurrencies"
       }
@@ -970,7 +972,7 @@
           }
         },
         "tags": [
-          "api"
+          "Public - System"
         ],
         "operationId": "getApiV2tradePublicCurrenciesId"
       }
@@ -1016,7 +1018,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Profile"
         ],
         "operationId": "getApiV2tradeAccountStatsPnl"
       }
@@ -1131,7 +1133,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Profile"
         ],
         "operationId": "getApiV2tradeAccountTransactions"
       }
@@ -1211,7 +1213,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "postApiV2tradeAccountWithdraws"
       },
@@ -1295,7 +1297,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountWithdraws"
       }
@@ -1312,7 +1314,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountWithdrawsSums"
       }
@@ -1339,7 +1341,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "deleteApiV2tradeAccountBeneficiariesId"
       },
@@ -1367,7 +1369,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountBeneficiariesId"
       }
@@ -1408,7 +1410,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "patchApiV2tradeAccountBeneficiariesIdActivate"
       }
@@ -1438,7 +1440,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "patchApiV2tradeAccountBeneficiariesIdResendPin"
       }
@@ -1511,7 +1513,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "postApiV2tradeAccountBeneficiaries"
       },
@@ -1572,7 +1574,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountBeneficiaries"
       }
@@ -1630,7 +1632,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountDepositAddressCurrency"
       }
@@ -1659,7 +1661,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountDepositsTxid"
       }
@@ -1745,7 +1747,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountDeposits"
       }
@@ -1785,7 +1787,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountBalancesCurrency"
       }
@@ -1858,7 +1860,7 @@
           }
         },
         "tags": [
-          "api"
+          "Account - Wallet"
         ],
         "operationId": "getApiV2tradeAccountBalances"
       }
@@ -1938,7 +1940,7 @@
           }
         },
         "tags": [
-          "api"
+          "Trading"
         ],
         "operationId": "getApiV2tradeMarketTrades"
       }
@@ -1989,7 +1991,7 @@
           }
         },
         "tags": [
-          "api"
+          "Trading"
         ],
         "operationId": "postApiV2tradeMarketOrdersCancel"
       }
@@ -2018,7 +2020,7 @@
           }
         },
         "tags": [
-          "api"
+          "Trading"
         ],
         "operationId": "postApiV2tradeMarketOrdersIdCancel"
       }
@@ -2097,7 +2099,7 @@
           }
         },
         "tags": [
-          "api"
+          "Trading"
         ],
         "operationId": "postApiV2tradeMarketOrders"
       },
@@ -2234,7 +2236,7 @@
           }
         },
         "tags": [
-          "api"
+          "Trading"
         ],
         "operationId": "getApiV2tradeMarketOrders"
       }
@@ -2263,7 +2265,7 @@
           }
         },
         "tags": [
-          "api"
+          "Trading"
         ],
         "operationId": "getApiV2tradeMarketOrdersId"
       }
@@ -2299,7 +2301,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoinmarketcapOrderbookMarketPair"
       }
@@ -2328,7 +2330,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoinmarketcapTradesMarketPair"
       }
@@ -2348,7 +2350,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoinmarketcapTicker"
       }
@@ -2365,7 +2367,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoinmarketcapAssets"
       }
@@ -2382,7 +2384,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoinmarketcapSummary"
       }
@@ -2445,7 +2447,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoingeckoHistoricalTrades"
       }
@@ -2481,7 +2483,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoingeckoOrderbook"
       }
@@ -2501,7 +2503,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoingeckoTickers"
       }
@@ -2518,7 +2520,7 @@
           }
         },
         "tags": [
-          "api"
+          "Market Data Integrations"
         ],
         "operationId": "getApiV2tradeCoingeckoPairs"
       }
@@ -3278,5 +3280,35 @@
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Public - System",
+      "description": "Health checks, version, timestamp, fee and currency metadata."
+    },
+    {
+      "name": "Public - Markets",
+      "description": "Market list, tickers, candles, depth and public trades."
+    },
+    {
+      "name": "Account - Wallet",
+      "description": "Balances, deposits, withdrawals and beneficiary addresses."
+    },
+    {
+      "name": "Account - Profile",
+      "description": "Account statistics and transaction history."
+    },
+    {
+      "name": "Trading",
+      "description": "Orders, cancellations and trading history."
+    },
+    {
+      "name": "Market Data Integrations",
+      "description": "CoinMarketCap and CoinGecko-compatible market data endpoints."
+    },
+    {
+      "name": "Webhooks",
+      "description": "Webhook event receiver endpoint."
+    }
+  ]
 }
