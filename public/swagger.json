@@ -26,14 +26,6 @@
     {
       "name": "Market",
       "description": "Operations about markets"
-    },
-    {
-      "name": "CoinMarketCap",
-      "description": "Endpoints required by CoinMarketCap"
-    },
-    {
-      "name": "CoinGecko",
-      "description": "Endpoints required by CoinGecko"
     }
   ],
   "paths": {
@@ -2327,8 +2319,8 @@
 
         "operationId": "getApiV2tradeMarketOrdersId"
       }
-    },
-    "/coinmarketcap/orderbook/{market_pair}": {
+    }
+    /* "/coinmarketcap/orderbook/{market_pair}": {
       "get": {
         "tags": ["CoinMarketCap"],
         "description": "Get depth or specified market",
@@ -2575,7 +2567,7 @@
 
         "operationId": "getApiV2tradeCoingeckoPairs"
       }
-    }
+    } */
   },
   "components": {
     "securitySchemes": {
