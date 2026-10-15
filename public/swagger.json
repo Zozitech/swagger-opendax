@@ -4,14 +4,14 @@
     "title": "KpowBIT Exchange User API",
     "contact": {
       "name": "Supporter",
-      "email": "hello@kpowbit.com",
-      "url": "https://kpowbit.com"
+      "email": "tech@kpowbit.com",
+      "url": "https://trade.kpowbit.com"
     },
     "version": "v2"
   },
   "servers": [
     {
-      "url": "https://kpowbit.com/rest/core"
+      "url": "https://trade.kpowbit.com/rest/core"
     }
   ],
   "tags": [
